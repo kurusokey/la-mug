@@ -42,7 +42,7 @@
     /* NAV */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 28px; left: 0; right: 0;
       z-index: 100;
       background: rgba(10,10,10,0.92);
       backdrop-filter: blur(12px);
@@ -115,7 +115,7 @@
     /* HERO */
     .hero {
       min-height: 100vh;
-      padding: 64px 24px 80px;
+      padding: 92px 24px 80px;
       display: flex;
       align-items: center;
       background: var(--black);
@@ -760,7 +760,7 @@
         display: flex;
         flex-direction: column;
         position: fixed;
-        top: 64px; left: 0; right: 0;
+        top: 92px; left: 0; right: 0;
         background: rgba(10,10,10,0.98);
         backdrop-filter: blur(12px);
         padding: 16px 24px 20px;
@@ -795,6 +795,43 @@
       .publics-grid { grid-template-columns: 1fr 1fr; }
     }
 
+    /* TOPBAR INTER-SITES */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 101;
+      height: 28px;
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .topbar a {
+      text-decoration: none;
+      color: #666;
+      transition: color 0.2s;
+    }
+
+    .topbar a:hover {
+      color: var(--white);
+    }
+
+    .topbar a.topbar-active {
+      color: var(--white);
+    }
+
+    .topbar .topbar-sep {
+      color: #444;
+      margin: 0 10px;
+      font-size: 10px;
+    }
+
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--black); }
@@ -802,6 +839,15 @@
   </style>
 </head>
 <body>
+
+  <!-- TOPBAR INTER-SITES -->
+  <div class="topbar">
+    <a href="https://la-mug.com" class="topbar-active">la-mug.com</a>
+    <span class="topbar-sep">&middot;</span>
+    <a href="https://fdy.art" target="_blank" rel="noopener noreferrer">fdy.art</a>
+    <span class="topbar-sep">&middot;</span>
+    <a href="https://boutique.la-mug.com" target="_blank" rel="noopener noreferrer">boutique.la-mug.com</a>
+  </div>
 
   <!-- NAV -->
   <nav>
