@@ -1534,6 +1534,13 @@
     let ytPlayer = null;
     let ytReady = false;
 
+    // Stopper la musique quand l'onglet perd le focus
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden && musicPlaying) {
+        toggleMusic();
+      }
+    });
+
     // Charger l'API YouTube IFrame
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
