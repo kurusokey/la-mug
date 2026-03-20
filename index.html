@@ -14,15 +14,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --yellow: #F5C800;
-      --magenta: #CC1677;
+      --yellow: #C8A050;     /* was #F5C800 — now warm gold */
+      --magenta: #8B6914;    /* was #CC1677 — now warm brown */
       --black: #0A0A0A;
       --dark: #111111;
       --card: #191919;
       --border: #2a2a2a;
       --white: #FFFFFF;
       --gray: #888888;
-      --light: #f0f0f0;
+      --light: #F5E6C8;      /* was #f0f0f0 — now off-white/parchment */
     }
 
     html {
@@ -37,6 +37,18 @@
       color: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
     }
 
     /* NAV */
@@ -83,15 +95,15 @@
     .nav-links a:hover { color: var(--white); }
 
     .nav-cta {
-      background: var(--magenta);
-      color: var(--white) !important;
+      background: var(--yellow) !important; /* now gold */
+      color: var(--black) !important;
       padding: 8px 20px;
       border-radius: 4px;
       font-weight: 600 !important;
       transition: opacity 0.2s !important;
     }
 
-    .nav-cta:hover { opacity: 0.85; color: var(--white) !important; }
+    .nav-cta:hover { opacity: 0.85; color: var(--black) !important; }
 
     .nav-burger {
       display: none;
@@ -128,7 +140,7 @@
       position: absolute;
       top: -200px; right: -200px;
       width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(245,200,0,0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(200,160,80,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -137,7 +149,7 @@
       position: absolute;
       bottom: -200px; left: -200px;
       width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(204,22,119,0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(139,105,20,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -210,7 +222,7 @@
       transition: all 0.2s;
     }
 
-    .btn-primary:hover { background: #ffd400; transform: translateY(-1px); }
+    .btn-primary:hover { background: #D4AD5A; transform: translateY(-1px); }
 
     .btn-secondary {
       display: inline-flex;
@@ -270,7 +282,7 @@
 
     .section-tag {
       display: inline-block;
-      color: var(--magenta);
+      color: var(--yellow);
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -366,8 +378,8 @@
     }
 
     .badge {
-      background: rgba(245,200,0,0.1);
-      border: 1px solid rgba(245,200,0,0.25);
+      background: rgba(200,160,80,0.1);
+      border: 1px solid rgba(200,160,80,0.25);
       color: var(--yellow);
       font-size: 12px;
       font-weight: 600;
@@ -443,14 +455,14 @@
       transition: transform 0.3s;
     }
 
-    .atelier-card:hover { border-color: rgba(245,200,0,0.3); transform: translateY(-4px); }
+    .atelier-card:hover { border-color: rgba(200,160,80,0.3); transform: translateY(-4px); }
     .atelier-card:hover::after { transform: scaleX(1); }
 
     .atelier-icon {
       width: 56px;
       height: 56px;
       border-radius: 12px;
-      background: rgba(245,200,0,0.12);
+      background: rgba(200,160,80,0.12);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -511,7 +523,7 @@
       transition: border-color 0.2s;
     }
 
-    .public-card:hover { border-color: rgba(204,22,119,0.4); }
+    .public-card:hover { border-color: rgba(139,105,20,0.4); }
 
     .public-icon {
       font-size: 40px;
@@ -557,7 +569,7 @@
     }
 
     .client-badge:hover {
-      border-color: rgba(245,200,0,0.35);
+      border-color: rgba(200,160,80,0.35);
       color: var(--white);
     }
 
@@ -597,7 +609,7 @@
       height: 44px;
       min-width: 44px;
       border-radius: 10px;
-      background: rgba(245,200,0,0.12);
+      background: rgba(200,160,80,0.12);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -686,12 +698,12 @@
       margin-top: 8px;
     }
 
-    .btn-submit:hover { background: #ffd400; transform: translateY(-1px); }
+    .btn-submit:hover { background: #D4AD5A; transform: translateY(-1px); }
 
     /* FOOTER */
     footer {
       background: var(--black);
-      border-top: 1px solid var(--border);
+      border-top: 2px solid #C8A050;
       padding: 48px 24px;
     }
 
@@ -736,8 +748,8 @@
     /* SUCCESS MESSAGE */
     .form-success {
       display: none;
-      background: rgba(245,200,0,0.1);
-      border: 1px solid rgba(245,200,0,0.3);
+      background: rgba(200,160,80,0.1);
+      border: 1px solid rgba(200,160,80,0.3);
       border-radius: 8px;
       padding: 20px;
       text-align: center;
@@ -767,7 +779,7 @@
         gap: 0;
         align-items: stretch;
         z-index: 999;
-        border-bottom: 1px solid rgba(245,200,0,0.1);
+        border-bottom: 1px solid rgba(200,160,80,0.1);
       }
       .nav-links.open a {
         font-size: 15px;
@@ -810,6 +822,7 @@
       font-family: 'Inter', sans-serif;
       text-transform: uppercase;
       letter-spacing: 2px;
+      border-bottom: 2px solid #C8A050;
     }
 
     .topbar a {
@@ -835,7 +848,7 @@
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: #C8A050; border-radius: 3px; }
   </style>
 </head>
 <body>
@@ -1227,7 +1240,7 @@
     // Nav scroll style
     window.addEventListener('scroll', () => {
       document.querySelector('nav').style.borderBottomColor =
-        window.scrollY > 40 ? 'rgba(245,200,0,0.15)' : 'var(--border)';
+        window.scrollY > 40 ? 'rgba(200,160,80,0.15)' : 'var(--border)';
     });
 
     // Form handling (Formspree)
