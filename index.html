@@ -811,6 +811,14 @@
         grid-template-columns: 1fr !important;
       }
 
+      /* Photos grid — 2 columns on mobile */
+      .photos-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+      .photos-grid > div {
+        grid-row: span 1 !important;
+      }
+
       /* TopBar — smaller font to prevent overflow */
       .topbar {
         font-size: 9px;
@@ -1120,6 +1128,7 @@
       <li><a href="#about">Notre mission</a></li>
       <li><a href="#ateliers">Ateliers</a></li>
       <li><a href="#videos">Nos ateliers en vidéo</a></li>
+      <li><a href="#photos">Nos ateliers en photo</a></li>
       <li><a href="#artistes">Artistes</a></li>
       <li><a href="#publics">Publics</a></li>
       <li><a href="#clients">Références</a></li>
@@ -1365,6 +1374,62 @@
     </div>
   </section>
 
+  <!-- PHOTOS ATELIERS -->
+  <section id="photos">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:48px;">
+        <span class="section-tag">● En images</span>
+        <h2 class="section-title">Nos <span>ateliers</span> en photo</h2>
+        <p class="section-desc">L'énergie des sessions en images — écriture, enregistrement, performance.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; max-width:1000px; margin:0 auto;" class="photos-grid">
+        <div style="grid-row:span 2; border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-001.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-002.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-003.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="grid-row:span 2; border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-004.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-005.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-007.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-008.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="grid-row:span 2; border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-009.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-0010.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-0011.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-00115.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-0012.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-0013.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+        <div style="border-radius:8px; overflow:hidden;">
+          <img src="atelier/img-atelier-0014.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PUBLICS -->
   <section id="publics">
     <div class="container">
@@ -1560,6 +1625,7 @@
         <li><a href="#about">Mission</a></li>
         <li><a href="#ateliers">Ateliers</a></li>
         <li><a href="#videos">Vidéos</a></li>
+        <li><a href="#photos">Photos</a></li>
         <li><a href="#artistes">Artistes</a></li>
         <li><a href="https://boutique.la-mug.com" target="_blank">Boutique</a></li>
         <li><a href="https://fdy.art" target="_blank">fdy.art</a></li>
