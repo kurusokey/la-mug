@@ -1157,8 +1157,10 @@
     </button>
     <p id="musicHint" class="hero-music-hint" style="font-size:10px; color:rgba(200,160,80,0.3); margin-top:8px; position:relative; z-index:2; letter-spacing:2px; text-transform:uppercase;">▶ Cliquez pour écouter</p>
 
-    <!-- YouTube player caché -->
-    <iframe id="ytPlayer" style="position:fixed; left:-9999px; top:-9999px; width:0; height:0;" allow="autoplay"></iframe>
+    <!-- YouTube player — visible mais minuscule (nécessaire pour mobile) -->
+    <div id="ytPlayerWrapper" style="position:fixed; bottom:8px; right:8px; z-index:9998; width:1px; height:1px; overflow:hidden; opacity:0; pointer-events:none; transition:all 0.3s;">
+      <div id="ytPlayer"></div>
+    </div>
 
     <!-- Texte principal -->
     <div style="position:relative; z-index:2; margin-top:40px; animation:fadeInUp 1.5s ease-out;">
@@ -1525,24 +1527,62 @@
 
   <script>
     // ============================================
-    // MUSIC PLAYER — Frero Prod Music (YouTube)
+    // MUSIC PLAYER — YouTube IFrame API (fonctionne sur mobile)
     // ============================================
     let musicPlaying = false;
     let eqInterval = null;
+    let ytPlayer = null;
+    let ytReady = false;
+
+    // Charger l'API YouTube IFrame
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+
+    // Callback appelé quand l'API est prête
+    window.onYouTubeIframeAPIReady = function() {
+      ytPlayer = new YT.Player('ytPlayer', {
+        height: '1',
+        width: '1',
+        videoId: 'LtSHe2ZCrrA',
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          showinfo: 0,
+          modestbranding: 1,
+          rel: 0,
+          loop: 1,
+          playlist: 'LtSHe2ZCrrA',
+          playsinline: 1  // Indispensable pour iOS
+        },
+        events: {
+          onReady: function() { ytReady = true; },
+          onStateChange: function(e) {
+            // Si la vidéo se termine, relancer (boucle)
+            if (e.data === YT.PlayerState.ENDED) {
+              ytPlayer.playVideo();
+            }
+          }
+        }
+      });
+    };
 
     function toggleMusic() {
-      const player = document.getElementById('ytPlayer');
       const hint = document.getElementById('musicHint');
 
+      if (!ytReady) {
+        hint.innerHTML = 'Chargement...';
+        setTimeout(toggleMusic, 500);
+        return;
+      }
+
       if (musicPlaying) {
-        // Stop
-        player.src = '';
+        ytPlayer.pauseVideo();
         musicPlaying = false;
         stopEqualizer();
         hint.innerHTML = '▶ Cliquez pour écouter';
       } else {
-        // Play — Interlude Frero Prod Music
-        player.src = 'https://www.youtube.com/embed/LtSHe2ZCrrA?autoplay=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=LtSHe2ZCrrA';
+        ytPlayer.playVideo();
         musicPlaying = true;
         startEqualizer();
         hint.innerHTML = '■ Cliquez pour arrêter';
@@ -1573,7 +1613,6 @@
         clearInterval(eqInterval);
         eqInterval = null;
       }
-      // Remettre les barres à leur taille statique
       const heights = [8, 12, 6, 10, 14, 7, 11];
       for (let i = 1; i <= 7; i++) {
         document.getElementById('eq' + i).style.height = heights[i-1] + 'px';
