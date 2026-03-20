@@ -758,11 +758,11 @@
       margin-top: 16px;
     }
 
-    /* MOBILE */
+    /* MOBILE — 900px (tablet) */
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
       .hero-stats { grid-template-columns: 1fr 1fr; }
-      .about-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
       .ateliers-grid { grid-template-columns: 1fr; }
       .publics-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -780,6 +780,8 @@
         align-items: stretch;
         z-index: 999;
         border-bottom: 1px solid rgba(200,160,80,0.1);
+        max-height: calc(100vh - 92px);
+        overflow-y: auto;
       }
       .nav-links.open a {
         font-size: 15px;
@@ -802,9 +804,187 @@
       .nav-burger { display: flex; }
     }
 
+    /* MOBILE — 768px (phone landscape / small tablet) */
+    @media (max-width: 768px) {
+      /* TopBar — smaller font to prevent overflow */
+      .topbar {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+      .topbar .topbar-sep {
+        margin: 0 6px;
+        font-size: 8px;
+      }
+
+      /* Sections — ensure proper padding */
+      section {
+        padding: 60px 16px;
+      }
+
+      /* Hero — logo smaller */
+      .hero-logo {
+        height: 80px !important;
+      }
+
+      /* Hero — equalizer button bigger tap target */
+      .hero-equalizer-btn {
+        min-width: 56px;
+        min-height: 48px;
+        padding: 12px 20px !important;
+      }
+
+      /* Hero — music hint visible */
+      .hero-music-hint {
+        font-size: 11px !important;
+        color: rgba(200,160,80,0.5) !important;
+      }
+
+      /* Hero — stats 2x2 grid on mobile */
+      .hero-stats-bar {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px !important;
+        max-width: 360px;
+      }
+      .hero-stat-sep {
+        display: none;
+      }
+      .hero-stat-item {
+        background: rgba(200,160,80,0.04);
+        border: 1px solid rgba(200,160,80,0.1);
+        border-radius: 8px;
+        padding: 16px 12px;
+      }
+
+      /* Hero — scroll indicator more bottom padding */
+      .hero-scroll-indicator {
+        bottom: 40px !important;
+      }
+
+      /* Hero circles — reduce to 2 on mobile for perf */
+      .hero-circle-outer {
+        display: none;
+      }
+      .hero-circle-inner {
+        display: none;
+      }
+
+      /* About card — less padding */
+      .about-card {
+        padding: 28px 20px;
+      }
+
+      /* Atelier cards — less padding */
+      .atelier-card {
+        padding: 28px 20px;
+      }
+
+      /* Footer — links wrap */
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+      .footer-copy {
+        text-align: center;
+      }
+
+      /* Contact form inputs full width */
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        font-size: 16px; /* prevents iOS zoom on focus */
+      }
+
+      /* Clients CTA card — stack vertically */
+      .clients-grid {
+        justify-content: center;
+      }
+    }
+
+    /* MOBILE — 500px (phone portrait) */
     @media (max-width: 500px) {
       .hero-stats { grid-template-columns: 1fr; }
       .publics-grid { grid-template-columns: 1fr 1fr; }
+
+      /* TopBar — even tighter */
+      .topbar {
+        font-size: 8px;
+        letter-spacing: 0.5px;
+        gap: 0;
+      }
+      .topbar .topbar-sep {
+        margin: 0 4px;
+      }
+
+      /* Hero — smaller title margin */
+      .hero {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+
+      /* Hero stats — single column on very small */
+      .hero-stats-bar {
+        grid-template-columns: 1fr 1fr;
+        max-width: 300px;
+        gap: 12px !important;
+      }
+
+      /* Nav padding */
+      nav {
+        padding: 0 16px;
+      }
+
+      /* Publics grid — single column on very small */
+      .publics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Atelier cards */
+      .atelier-card {
+        padding: 24px 16px;
+      }
+      .atelier-name {
+        font-size: 24px;
+      }
+
+      /* Client badges — full width */
+      .client-badge {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Section title */
+      .section-title {
+        font-size: clamp(32px, 8vw, 48px);
+      }
+
+      /* About card */
+      .about-card {
+        padding: 24px 16px;
+      }
+      .about-name {
+        font-size: 26px;
+      }
+
+      /* Footer */
+      footer {
+        padding: 32px 16px;
+      }
+      .footer-links {
+        gap: 12px;
+      }
+      .footer-links a {
+        font-size: 13px;
+      }
     }
 
     /* TOPBAR INTER-SITES */
@@ -898,6 +1078,23 @@
       0%, 100% { transform: translateX(-50%) translateY(0); }
       50% { transform: translateX(-50%) translateY(-8px); }
     }
+
+    /* GPU-accelerated animations for hero elements */
+    .hero-logo {
+      will-change: filter;
+    }
+    .hero-circle {
+      will-change: transform;
+    }
+
+    /* Reduce motion for users who prefer it (also helps mobile perf) */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-circle,
+      .hero-logo,
+      .hero-scroll-indicator {
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -932,12 +1129,12 @@
   <section class="hero" style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden;">
 
     <!-- Fond animé : lignes de scratch vinyle -->
-    <div style="position:absolute; inset:0; overflow:hidden; pointer-events:none;">
+    <div class="hero-bg-animated" style="position:absolute; inset:0; overflow:hidden; pointer-events:none;">
       <!-- Cercles concentriques (vinyle) -->
-      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:900px; height:900px; border-radius:50%; border:1px solid rgba(200,160,80,0.04); animation:spinSlow 60s linear infinite;"></div>
-      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:700px; height:700px; border-radius:50%; border:1px solid rgba(200,160,80,0.05); animation:spinSlow 45s linear infinite reverse;"></div>
-      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:500px; height:500px; border-radius:50%; border:1px solid rgba(200,160,80,0.06); animation:spinSlow 30s linear infinite;"></div>
-      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:300px; height:300px; border-radius:50%; border:1px solid rgba(200,160,80,0.07); animation:spinSlow 20s linear infinite reverse;"></div>
+      <div class="hero-circle hero-circle-outer" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:900px; height:900px; border-radius:50%; border:1px solid rgba(200,160,80,0.04); animation:spinSlow 60s linear infinite; will-change:transform;"></div>
+      <div class="hero-circle" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:700px; height:700px; border-radius:50%; border:1px solid rgba(200,160,80,0.05); animation:spinSlow 45s linear infinite reverse; will-change:transform;"></div>
+      <div class="hero-circle" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:500px; height:500px; border-radius:50%; border:1px solid rgba(200,160,80,0.06); animation:spinSlow 30s linear infinite; will-change:transform;"></div>
+      <div class="hero-circle hero-circle-inner" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:300px; height:300px; border-radius:50%; border:1px solid rgba(200,160,80,0.07); animation:spinSlow 20s linear infinite reverse; will-change:transform;"></div>
       <!-- Lueurs -->
       <div style="position:absolute; top:-10%; right:-10%; width:500px; height:500px; background:radial-gradient(circle, rgba(200,160,80,0.06) 0%, transparent 70%);"></div>
       <div style="position:absolute; bottom:-10%; left:-10%; width:500px; height:500px; background:radial-gradient(circle, rgba(139,105,20,0.05) 0%, transparent 70%);"></div>
@@ -945,11 +1142,11 @@
 
     <!-- Logo MUG animé -->
     <div style="position:relative; z-index:2; animation:fadeInUp 1.2s ease-out;">
-      <img src="logo-la-mug-white.png" alt="La M.U.G" style="height:120px; width:auto; opacity:0.9; filter:drop-shadow(0 0 40px rgba(200,160,80,0.15)); animation:glowPulse 4s ease-in-out infinite;" />
+      <img class="hero-logo" src="logo-la-mug-white.png" alt="La M.U.G" style="height:120px; width:auto; opacity:0.9; filter:drop-shadow(0 0 40px rgba(200,160,80,0.15)); animation:glowPulse 4s ease-in-out infinite;" />
     </div>
 
     <!-- Equalizer cliquable — contrôle la musique -->
-    <button id="musicToggle" onclick="toggleMusic()" style="display:flex; align-items:flex-end; gap:4px; height:40px; margin-top:32px; position:relative; z-index:2; background:none; border:none; cursor:pointer; padding:8px 16px; border-radius:8px; transition:background 0.3s;" onmouseover="this.style.background='rgba(200,160,80,0.08)'" onmouseout="this.style.background='none'" title="Cliquez pour écouter">
+    <button id="musicToggle" class="hero-equalizer-btn" onclick="toggleMusic()" style="display:flex; align-items:flex-end; gap:4px; height:40px; margin-top:32px; position:relative; z-index:2; background:none; border:none; cursor:pointer; padding:8px 16px; border-radius:8px; transition:background 0.3s;" onmouseover="this.style.background='rgba(200,160,80,0.08)'" onmouseout="this.style.background='none'" title="Cliquez pour écouter">
       <div id="eq1" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:8px; transition:height 0.3s;"></div>
       <div id="eq2" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:12px; transition:height 0.3s;"></div>
       <div id="eq3" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:6px; transition:height 0.3s;"></div>
@@ -958,7 +1155,7 @@
       <div id="eq6" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:7px; transition:height 0.3s;"></div>
       <div id="eq7" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:11px; transition:height 0.3s;"></div>
     </button>
-    <p id="musicHint" style="font-size:10px; color:rgba(200,160,80,0.3); margin-top:8px; position:relative; z-index:2; letter-spacing:2px; text-transform:uppercase;">▶ Cliquez pour écouter</p>
+    <p id="musicHint" class="hero-music-hint" style="font-size:10px; color:rgba(200,160,80,0.3); margin-top:8px; position:relative; z-index:2; letter-spacing:2px; text-transform:uppercase;">▶ Cliquez pour écouter</p>
 
     <!-- YouTube player caché -->
     <iframe id="ytPlayer" style="position:fixed; left:-9999px; top:-9999px; width:0; height:0;" allow="autoplay"></iframe>
@@ -990,30 +1187,30 @@
     </div>
 
     <!-- Stats en bas du hero -->
-    <div style="position:relative; z-index:2; margin-top:60px; display:flex; flex-wrap:wrap; gap:32px; justify-content:center; animation:fadeInUp 2.4s ease-out;">
-      <div style="text-align:center;">
+    <div class="hero-stats-bar" style="position:relative; z-index:2; margin-top:60px; display:flex; flex-wrap:wrap; gap:32px; justify-content:center; animation:fadeInUp 2.4s ease-out;">
+      <div class="hero-stat-item" style="text-align:center;">
         <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; color:#C8A050;">25+</div>
         <div style="font-size:12px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:1px;">Années d'expertise</div>
       </div>
-      <div style="width:1px; background:rgba(200,160,80,0.15); align-self:stretch;"></div>
-      <div style="text-align:center;">
+      <div class="hero-stat-sep" style="width:1px; background:rgba(200,160,80,0.15); align-self:stretch;"></div>
+      <div class="hero-stat-item" style="text-align:center;">
         <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; color:#C8A050;">4</div>
         <div style="font-size:12px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:1px;">Formats d'ateliers</div>
       </div>
-      <div style="width:1px; background:rgba(200,160,80,0.15); align-self:stretch;"></div>
-      <div style="text-align:center;">
+      <div class="hero-stat-sep" style="width:1px; background:rgba(200,160,80,0.15); align-self:stretch;"></div>
+      <div class="hero-stat-item" style="text-align:center;">
         <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; color:#C8A050;">12</div>
         <div style="font-size:12px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:1px;">Personnes max.</div>
       </div>
-      <div style="width:1px; background:rgba(200,160,80,0.15); align-self:stretch;"></div>
-      <div style="text-align:center;">
+      <div class="hero-stat-sep" style="width:1px; background:rgba(200,160,80,0.15); align-self:stretch;"></div>
+      <div class="hero-stat-item" style="text-align:center;">
         <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; color:#C8A050;">8+</div>
         <div style="font-size:12px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:1px;">Collectivités partenaires</div>
       </div>
     </div>
 
     <!-- Scroll indicator -->
-    <div style="position:absolute; bottom:24px; left:50%; transform:translateX(-50%); z-index:2; animation:bounce 2s infinite;">
+    <div class="hero-scroll-indicator" style="position:absolute; bottom:24px; left:50%; transform:translateX(-50%); z-index:2; animation:bounce 2s infinite;">
       <div style="width:24px; height:40px; border:2px solid rgba(200,160,80,0.2); border-radius:12px; display:flex; justify-content:center; padding-top:6px;">
         <div style="width:3px; height:8px; background:#C8A050; border-radius:2px; animation:scrollDot 2s infinite;"></div>
       </div>
