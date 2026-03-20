@@ -1337,7 +1337,8 @@
         <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--border); background:var(--card);">
           <div style="position:relative; padding-bottom:56.25%; height:0;">
             <iframe
-              src="https://www.youtube.com/embed/cDmEl6x99gI"
+              id="videoAtelier1"
+              src="https://www.youtube.com/embed/cDmEl6x99gI?enablejsapi=1&origin=https://la-mug.com"
               title="Atelier La M.U.G"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -1350,7 +1351,8 @@
         <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--border); background:var(--card);">
           <div style="position:relative; padding-bottom:56.25%; height:0;">
             <iframe
-              src="https://www.youtube.com/embed/mxvmt-tKrec"
+              id="videoAtelier2"
+              src="https://www.youtube.com/embed/mxvmt-tKrec?enablejsapi=1&origin=https://la-mug.com"
               title="Atelier La M.U.G"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -1573,47 +1575,90 @@
 
   <script>
     // ============================================
-    // MUSIC PLAYER — YouTube IFrame API (fonctionne sur mobile)
+    // GESTIONNAIRE AUDIO CENTRAL
+    // Un seul son à la fois : equalizer OU vidéo 1 OU vidéo 2
     // ============================================
     let musicPlaying = false;
     let eqInterval = null;
     let ytPlayer = null;
     let ytReady = false;
+    let videoPlayer1 = null;
+    let videoPlayer2 = null;
 
-    // Stopper la musique quand l'onglet perd le focus
+    // Stopper tout quand l'onglet perd le focus
     document.addEventListener('visibilitychange', function() {
-      if (document.hidden && musicPlaying) {
-        toggleMusic();
+      if (document.hidden) {
+        stopAll();
       }
     });
+
+    // Stopper TOUS les sons
+    function stopAll() {
+      // Stopper l'equalizer audio
+      if (musicPlaying) {
+        if (ytPlayer && ytReady) ytPlayer.pauseVideo();
+        musicPlaying = false;
+        stopEqualizer();
+        document.getElementById('musicHint').innerHTML = '▶ Cliquez pour écouter';
+      }
+      // Stopper les vidéos ateliers
+      if (videoPlayer1) try { videoPlayer1.pauseVideo(); } catch(e) {}
+      if (videoPlayer2) try { videoPlayer2.pauseVideo(); } catch(e) {}
+    }
 
     // Charger l'API YouTube IFrame
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.head.appendChild(tag);
 
-    // Callback appelé quand l'API est prête
     window.onYouTubeIframeAPIReady = function() {
+      // Player audio (equalizer)
       ytPlayer = new YT.Player('ytPlayer', {
         height: '1',
         width: '1',
         videoId: 'LtSHe2ZCrrA',
         playerVars: {
-          autoplay: 0,
-          controls: 0,
-          showinfo: 0,
-          modestbranding: 1,
-          rel: 0,
-          loop: 1,
-          playlist: 'LtSHe2ZCrrA',
-          playsinline: 1  // Indispensable pour iOS
+          autoplay: 0, controls: 0, showinfo: 0,
+          modestbranding: 1, rel: 0, loop: 1,
+          playlist: 'LtSHe2ZCrrA', playsinline: 1
         },
         events: {
           onReady: function() { ytReady = true; },
           onStateChange: function(e) {
-            // Si la vidéo se termine, relancer (boucle)
-            if (e.data === YT.PlayerState.ENDED) {
-              ytPlayer.playVideo();
+            if (e.data === YT.PlayerState.ENDED) ytPlayer.playVideo();
+          }
+        }
+      });
+
+      // Players vidéo ateliers
+      videoPlayer1 = new YT.Player('videoAtelier1', {
+        events: {
+          onStateChange: function(e) {
+            // Quand cette vidéo joue, stopper tout le reste
+            if (e.data === YT.PlayerState.PLAYING) {
+              if (musicPlaying) {
+                ytPlayer.pauseVideo();
+                musicPlaying = false;
+                stopEqualizer();
+                document.getElementById('musicHint').innerHTML = '▶ Cliquez pour écouter';
+              }
+              if (videoPlayer2) try { videoPlayer2.pauseVideo(); } catch(err) {}
+            }
+          }
+        }
+      });
+
+      videoPlayer2 = new YT.Player('videoAtelier2', {
+        events: {
+          onStateChange: function(e) {
+            if (e.data === YT.PlayerState.PLAYING) {
+              if (musicPlaying) {
+                ytPlayer.pauseVideo();
+                musicPlaying = false;
+                stopEqualizer();
+                document.getElementById('musicHint').innerHTML = '▶ Cliquez pour écouter';
+              }
+              if (videoPlayer1) try { videoPlayer1.pauseVideo(); } catch(err) {}
             }
           }
         }
@@ -1635,6 +1680,9 @@
         stopEqualizer();
         hint.innerHTML = '▶ Cliquez pour écouter';
       } else {
+        // Stopper les vidéos ateliers d'abord
+        if (videoPlayer1) try { videoPlayer1.pauseVideo(); } catch(e) {}
+        if (videoPlayer2) try { videoPlayer2.pauseVideo(); } catch(e) {}
         ytPlayer.playVideo();
         musicPlaying = true;
         startEqualizer();
