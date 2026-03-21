@@ -811,12 +811,10 @@
         grid-template-columns: 1fr !important;
       }
 
-      /* Photos grid — 2 columns on mobile */
-      .photos-grid {
-        grid-template-columns: 1fr 1fr !important;
-      }
-      .photos-grid > div {
-        grid-row: span 1 !important;
+      /* Carrousel photos — plus petit sur mobile */
+      .photo-card {
+        flex: 0 0 200px !important;
+        height: 280px !important;
       }
 
       /* TopBar — smaller font to prevent overflow */
@@ -1374,7 +1372,7 @@
     </div>
   </section>
 
-  <!-- PHOTOS ATELIERS -->
+  <!-- PHOTOS ATELIERS — Carrousel + Lightbox -->
   <section id="photos">
     <div class="container">
       <div style="text-align:center; margin-bottom:48px;">
@@ -1382,51 +1380,78 @@
         <h2 class="section-title">Nos <span>ateliers</span> en photo</h2>
         <p class="section-desc" style="margin:0 auto;">L'énergie des sessions en images — écriture, enregistrement, performance.</p>
       </div>
+    </div>
 
-      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; max-width:1000px; margin:0 auto;" class="photos-grid">
-        <div style="grid-row:span 2; border-radius:8px; overflow:hidden;">
+    <!-- Carrousel pleine largeur -->
+    <div style="position:relative; overflow:hidden;">
+      <!-- Bande défilante -->
+      <div id="photoCarousel" style="display:flex; gap:12px; overflow-x:auto; scroll-behavior:smooth; padding:0 24px 16px; -webkit-overflow-scrolling:touch; scrollbar-width:none; -ms-overflow-style:none;">
+        <div class="photo-card" onclick="openLightbox(0)" style="flex:0 0 280px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-001.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(1)" style="flex:0 0 220px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-002.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(2)" style="flex:0 0 300px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-003.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="grid-row:span 2; border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(3)" style="flex:0 0 240px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-004.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(4)" style="flex:0 0 260px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-005.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(5)" style="flex:0 0 280px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-007.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(6)" style="flex:0 0 230px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-008.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="grid-row:span 2; border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(7)" style="flex:0 0 270px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-009.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(8)" style="flex:0 0 250px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-0010.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(9)" style="flex:0 0 290px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-0011.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(10)" style="flex:0 0 240px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-00115.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(11)" style="flex:0 0 260px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-0012.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(12)" style="flex:0 0 220px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-0013.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div style="border-radius:8px; overflow:hidden;">
+        <div class="photo-card" onclick="openLightbox(13)" style="flex:0 0 280px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
           <img src="atelier/img-atelier-0014.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
       </div>
+
+      <!-- Boutons navigation -->
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:20px;">
+        <button onclick="document.getElementById('photoCarousel').scrollBy({left:-300,behavior:'smooth'})" style="width:40px; height:40px; border-radius:50%; border:1px solid rgba(200,160,80,0.2); background:rgba(10,10,10,0.8); color:#C8A050; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(200,160,80,0.5)'" onmouseout="this.style.borderColor='rgba(200,160,80,0.2)'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;"><path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" /></svg>
+        </button>
+        <button onclick="document.getElementById('photoCarousel').scrollBy({left:300,behavior:'smooth'})" style="width:40px; height:40px; border-radius:50%; border:1px solid rgba(200,160,80,0.2); background:rgba(10,10,10,0.8); color:#C8A050; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(200,160,80,0.5)'" onmouseout="this.style.borderColor='rgba(200,160,80,0.2)'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;"><path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,0.95); backdrop-filter:blur(12px); cursor:pointer; align-items:center; justify-content:center;">
+      <button onclick="event.stopPropagation(); navigateLightbox(-1)" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:1px solid rgba(200,160,80,0.3); background:rgba(0,0,0,0.5); color:#C8A050; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10001;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:20px;height:20px;"><path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" /></svg>
+      </button>
+      <img id="lightboxImg" src="" alt="" style="max-width:90vw; max-height:90vh; object-fit:contain; border-radius:8px; pointer-events:none;">
+      <button onclick="event.stopPropagation(); navigateLightbox(1)" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:1px solid rgba(200,160,80,0.3); background:rgba(0,0,0,0.5); color:#C8A050; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10001;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:20px;height:20px;"><path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
+      </button>
+      <button onclick="closeLightbox()" style="position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:50%; border:1px solid rgba(200,160,80,0.3); background:rgba(0,0,0,0.5); color:#C8A050; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10001; font-size:20px;">✕</button>
+      <div id="lightboxCounter" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); color:rgba(200,160,80,0.5); font-size:13px; letter-spacing:2px;"></div>
     </div>
   </section>
 
@@ -1792,6 +1817,54 @@
         document.getElementById('eq' + i).style.height = heights[i-1] + 'px';
       }
     }
+
+    // ============================================
+    // LIGHTBOX GALERIE PHOTOS
+    // ============================================
+    const photoSources = [
+      'atelier/img-atelier-001.jpeg', 'atelier/img-atelier-002.jpeg',
+      'atelier/img-atelier-003.jpeg', 'atelier/img-atelier-004.jpeg',
+      'atelier/img-atelier-005.jpeg', 'atelier/img-atelier-007.jpeg',
+      'atelier/img-atelier-008.jpeg', 'atelier/img-atelier-009.jpeg',
+      'atelier/img-atelier-0010.jpeg', 'atelier/img-atelier-0011.jpeg',
+      'atelier/img-atelier-00115.jpeg', 'atelier/img-atelier-0012.jpeg',
+      'atelier/img-atelier-0013.jpeg', 'atelier/img-atelier-0014.jpeg'
+    ];
+    let currentPhoto = 0;
+
+    function openLightbox(index) {
+      currentPhoto = index;
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightboxImg').src = photoSources[index];
+      document.getElementById('lightboxCounter').textContent = (index + 1) + ' / ' + photoSources.length;
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(dir) {
+      currentPhoto = (currentPhoto + dir + photoSources.length) % photoSources.length;
+      document.getElementById('lightboxImg').src = photoSources[currentPhoto];
+      document.getElementById('lightboxCounter').textContent = (currentPhoto + 1) + ' / ' + photoSources.length;
+    }
+
+    // Clavier : flèches + Escape
+    document.addEventListener('keydown', function(e) {
+      const lb = document.getElementById('lightbox');
+      if (lb.style.display !== 'flex') return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    // Cacher la scrollbar du carrousel
+    const style = document.createElement('style');
+    style.textContent = '#photoCarousel::-webkit-scrollbar { display: none; }';
+    document.head.appendChild(style);
 
     function toggleMenu() {
       const links = document.getElementById('navLinks');
