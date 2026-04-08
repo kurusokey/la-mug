@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>La M.U.G — Dashboard Marketing</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0A0A0A;
+      color: #F5E6C8;
+      min-height: 100vh;
+    }
+
+    .container { max-width: 640px; margin: 0 auto; padding: 16px; }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 24px 0;
+      border-bottom: 2px solid #C8A050;
+      margin-bottom: 16px;
+    }
+    .header h1 { color: #C8A050; font-size: 22px; }
+    .header p { color: #888; font-size: 12px; margin-top: 4px; }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 6px;
+      padding: 8px 0 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tab {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: none;
+      background: #1A1A1A;
+      color: #888;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab.active { background: #C8A050; color: #0A0A0A; font-weight: bold; }
+    .tab:hover { opacity: 0.8; }
+
+    /* Cards grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .stat-card {
+      background: #1A1A1A;
+      border-radius: 10px;
+      padding: 16px;
+      border-left: 3px solid #C8A050;
+    }
+    .stat-card .label { color: #888; font-size: 12px; }
+    .stat-card .value { font-size: 26px; font-weight: bold; margin-top: 4px; }
+    .stat-card.gold .value { color: #C8A050; }
+    .stat-card.green .value { color: #4CAF50; }
+    .stat-card.blue .value { color: #2196F3; }
+    .stat-card.orange .value { color: #FF9800; }
+    .stat-card.gold { border-left-color: #C8A050; }
+    .stat-card.green { border-left-color: #4CAF50; }
+    .stat-card.blue { border-left-color: #2196F3; }
+    .stat-card.orange { border-left-color: #FF9800; }
+
+    /* Post cards */
+    .card-list { display: flex; flex-direction: column; gap: 10px; }
+    .card {
+      background: #1A1A1A;
+      border-radius: 10px;
+      padding: 14px;
+      border-left: 3px solid #333;
+    }
+    .card.promo { border-left-color: #FF9800; }
+    .card.communaute { border-left-color: #4CAF50; }
+    .card.valeur { border-left-color: #C8A050; }
+    .card.pending { border: 1px solid #C8A050; }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #888;
+    }
+    .card-body { margin: 8px 0; font-size: 14px; line-height: 1.5; }
+    .card-footer { display: flex; gap: 12px; font-size: 11px; color: #666; }
+    .card-title { font-weight: bold; margin: 8px 0 4px; font-size: 14px; }
+
+    .tag {
+      display: inline-block;
+      background: #333;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    /* Buttons */
+    .btn-row { display: flex; gap: 8px; margin-top: 10px; }
+    .btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-approve { background: #4CAF50; color: #fff; }
+    .btn-reject { background: #f44336; color: #fff; }
+
+    /* Comment sentiment */
+    .sentiment { font-size: 14px; }
+
+    /* Loading */
+    .loading { text-align: center; color: #888; padding: 40px 0; }
+    .empty { text-align: center; color: #666; padding: 40px 0; font-size: 14px; }
+
+    /* Back link */
+    .back-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: #C8A050;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    /* Refresh */
+    .refresh-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      font-size: 12px;
+      color: #666;
+    }
+    .refresh-btn {
+      background: none;
+      border: 1px solid #333;
+      color: #C8A050;
+      padding: 4px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .refresh-btn:hover { border-color: #C8A050; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <h1>La M.U.G — Marketing</h1>
+    <p>Dashboard de gestion des réseaux sociaux</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('dashboard')">Tableau de bord</button>
+    <button class="tab" onclick="switchTab('posts')">Posts</button>
+    <button class="tab" onclick="switchTab('library')">Bibliothèque</button>
+    <button class="tab" onclick="switchTab('comments')">Commentaires</button>
+  </div>
+
+  <!-- Refresh bar -->
+  <div class="refresh-bar">
+    <span id="lastUpdate">—</span>
+    <button class="refresh-btn" onclick="refresh()">Actualiser</button>
+  </div>
+
+  <!-- Content -->
+  <div id="content">
+    <div class="loading">Chargement...</div>
+  </div>
+
+  <!-- Back -->
+  <a href="index.html" class="back-link">← Retour au site</a>
+</div>
+
+<script>
+  // ---- Configuration ----
+  const API_BASE = 'https://boutique.la-mug.com/api/marketing/posts';
+  // En local, utilise : const API_BASE = 'http://localhost:3000/api/marketing/posts';
+
+  let currentTab = 'dashboard';
+
+  // ---- API ----
+  async function api(view) {
+    try {
+      const res = await fetch(`${API_BASE}?view=${view}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    } catch (err) {
+      console.error('API error:', err);
+      return null;
+    }
+  }
+
+  async function apiPost(action, id) {
+    try {
+      const res = await fetch(API_BASE, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action, id }),
+      });
+      return await res.json();
+    } catch (err) {
+      console.error('API error:', err);
+      return null;
+    }
+  }
+
+  // ---- Tabs ----
+  function switchTab(tab) {
+    currentTab = tab;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelector(`.tab[onclick="switchTab('${tab}')"]`).classList.add('active');
+    refresh();
+  }
+
+  // ---- Render ----
+  async function refresh() {
+    const el = document.getElementById('content');
+    el.innerHTML = '<div class="loading">Chargement...</div>';
+    document.getElementById('lastUpdate').textContent = 'Mis à jour à ' + new Date().toLocaleTimeString('fr-FR');
+
+    if (currentTab === 'dashboard') await renderDashboard(el);
+    else if (currentTab === 'posts') await renderPosts(el);
+    else if (currentTab === 'library') await renderLibrary(el);
+    else if (currentTab === 'comments') await renderComments(el);
+  }
+
+  async function renderDashboard(el) {
+    const data = await api('stats');
+    if (!data) { el.innerHTML = '<div class="empty">Impossible de charger les stats.</div>'; return; }
+
+    el.innerHTML = `
+      <div class="stats-grid">
+        <div class="stat-card gold">
+          <div class="label">Posts</div>
+          <div class="value">${data.totalPosts}</div>
+        </div>
+        <div class="stat-card green">
+          <div class="label">Score moyen</div>
+          <div class="value">${data.avgScore}%</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="label">Impressions</div>
+          <div class="value">${(data.totalImpressions || 0).toLocaleString('fr-FR')}</div>
+        </div>
+        <div class="stat-card orange">
+          <div class="label">Clics</div>
+          <div class="value">${(data.totalClicks || 0).toLocaleString('fr-FR')}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  async function renderPosts(el) {
+    const data = await api('recent');
+    if (!data || !data.posts?.length) { el.innerHTML = '<div class="empty">Aucun post enregistré.</div>'; return; }
+
+    el.innerHTML = '<div class="card-list">' + data.posts.map(p => `
+      <div class="card ${p.content_category || 'valeur'}">
+        <div class="card-header">
+          <span>${p.platform} / ${p.post_type}</span>
+          <span>${new Date(p.created_at).toLocaleDateString('fr-FR')}</span>
+        </div>
+        <div class="card-body">${escapeHtml(p.text_content).slice(0, 180)}${p.text_content.length > 180 ? '...' : ''}</div>
+        ${p.score > 0 ? `<div class="card-footer">
+          <span>Score: ${p.score}%</span>
+          <span>Impressions: ${p.impressions || 0}</span>
+          <span>Clics: ${p.clicks || 0}</span>
+        </div>` : ''}
+      </div>
+    `).join('') + '</div>';
+  }
+
+  async function renderLibrary(el) {
+    const data = await api('library');
+    if (!data || !data.items?.length) { el.innerHTML = '<div class="empty">Bibliothèque vide.</div>'; return; }
+
+    el.innerHTML = '<div class="card-list">' + data.items.map(item => `
+      <div class="card ${item.approved ? '' : 'pending'}">
+        <div class="card-header">
+          <span class="tag">${item.type}</span>
+          <span>${item.approved ? '✅ Approuvé' : '⏳ En attente'}</span>
+        </div>
+        <div class="card-title">${escapeHtml(item.title)}</div>
+        <div class="card-body" style="color:#aaa">${escapeHtml(item.content).slice(0, 140)}${item.content.length > 140 ? '...' : ''}</div>
+        ${!item.approved ? `
+        <div class="btn-row">
+          <button class="btn btn-approve" onclick="approveItem('${item.id}')">Approuver</button>
+          <button class="btn btn-reject" onclick="rejectItem('${item.id}')">Rejeter</button>
+        </div>` : ''}
+      </div>
+    `).join('') + '</div>';
+  }
+
+  async function renderComments(el) {
+    const data = await api('comments');
+    if (!data || !data.comments?.length) { el.innerHTML = '<div class="empty">Aucun commentaire en attente.</div>'; return; }
+
+    const emoji = { positive: '💚', negative: '🔴', neutral: '⚪', question: '❓' };
+
+    el.innerHTML = '<div class="card-list">' + data.comments.map(c => `
+      <div class="card">
+        <div class="card-header">
+          <span class="sentiment">${emoji[c.sentiment] || '💬'} @${escapeHtml(c.username)}</span>
+          <span>${new Date(c.timestamp).toLocaleDateString('fr-FR')}</span>
+        </div>
+        <div class="card-body">"${escapeHtml(c.text_content)}"</div>
+      </div>
+    `).join('') + '</div>';
+  }
+
+  // ---- Actions ----
+  async function approveItem(id) {
+    await apiPost('approve', id);
+    refresh();
+  }
+
+  async function rejectItem(id) {
+    if (!confirm('Supprimer ce contenu ?')) return;
+    await apiPost('reject', id);
+    refresh();
+  }
+
+  // ---- Utils ----
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text || '';
+    return div.innerHTML;
+  }
+
+  // ---- Init ----
+  refresh();
+</script>
+
+</body>
+</html>
