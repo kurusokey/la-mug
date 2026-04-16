@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentions Légales & Politique de Confidentialité — La M.U.G</title>
+  <meta name="description" content="Mentions légales, politique de confidentialité et conditions d'utilisation du site la-mug.com — La Maison Urbaine Générale.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #C8A050;
+      --black: #0A0A0A;
+      --dark: #111111;
+      --card: #191919;
+      --border: #2a2a2a;
+      --white: #FFFFFF;
+      --gray: #888888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 101;
+      height: 28px;
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-bottom: 2px solid #C8A050;
+    }
+    .topbar a { text-decoration: none; color: #666; transition: color 0.2s; }
+    .topbar a:hover { color: var(--white); }
+    .topbar a.topbar-active { color: var(--white); }
+    .topbar .topbar-sep { color: #444; margin: 0 10px; font-size: 10px; }
+
+    nav {
+      position: fixed;
+      top: 28px; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+      color: var(--yellow);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--white); }
+    .nav-back {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--white); }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 140px 24px 80px;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    h1 span { color: var(--yellow); }
+
+    .last-update {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 1px;
+      color: var(--yellow);
+      margin-top: 48px;
+      margin-bottom: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    h2:first-of-type { border-top: none; padding-top: 0; }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    p, li {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    a { color: var(--yellow); }
+
+    footer {
+      background: var(--black);
+      border-top: 2px solid #C8A050;
+      padding: 48px 24px;
+    }
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      color: var(--gray);
+      font-size: 13px;
+    }
+    .footer-inner a { color: var(--gray); text-decoration: none; margin: 0 12px; transition: color 0.2s; }
+    .footer-inner a:hover { color: var(--white); }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: #C8A050; border-radius: 3px; }
+
+    @media (max-width: 768px) {
+      .content { padding: 120px 16px 60px; }
+      .topbar { font-size: 9px; letter-spacing: 1px; }
+      .topbar .topbar-sep { margin: 0 6px; font-size: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="https://la-mug.com" class="topbar-active">la-mug.com</a>
+    <span class="topbar-sep">&middot;</span>
+    <a href="https://fdy.art" target="_blank" rel="noopener noreferrer">fdy.art</a>
+    <span class="topbar-sep">&middot;</span>
+    <a href="https://boutique.la-mug.com" target="_blank" rel="noopener noreferrer">boutique.la-mug.com</a>
+  </div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">LA <span>M.U.G</span></a>
+    <a href="index.html" class="nav-back">← Retour au site</a>
+  </nav>
+
+  <div class="content">
+    <h1>Mentions <span>Légales</span></h1>
+    <p class="last-update">Dernière mise à jour : 16 avril 2026</p>
+
+    <h2>1. Éditeur du site</h2>
+    <p>
+      Le site <strong>la-mug.com</strong> est édité par :<br>
+      <strong>La M.U.G — La Maison Urbaine Générale</strong><br>
+      Représentée par Fabrice Delvin (Fdy Phenomen), Directeur artistique<br>
+      11 Avenue Jacques Duclos, 93420 Villepinte, France<br>
+      Email : <a href="mailto:contactlamug@gmail.com">contactlamug@gmail.com</a><br>
+      Téléphone : <a href="tel:0651994864">06 51 99 48 64</a>
+    </p>
+
+    <h2>2. Hébergement</h2>
+    <p>
+      Le site est hébergé par :<br>
+      <strong>Vercel Inc.</strong><br>
+      340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis<br>
+      Site web : <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">vercel.com</a>
+    </p>
+
+    <h2>3. Propriété intellectuelle</h2>
+    <p>
+      L'ensemble du contenu du site la-mug.com (textes, images, vidéos, logos, graphismes, icônes, sons) est protégé par le droit d'auteur et le droit de la propriété intellectuelle. Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site est interdite sans l'autorisation écrite préalable de La M.U.G.
+    </p>
+    <p>
+      Le nom "La M.U.G", "La Maison Urbaine Générale", "Fdy Phenomen" ainsi que les logos associés sont des marques déposées ou des dénominations protégées. Leur utilisation sans autorisation est strictement interdite.
+    </p>
+
+    <h2>4. Responsabilité</h2>
+    <p>
+      La M.U.G s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Toutefois, elle ne saurait garantir l'exactitude, la complétude ou l'actualité des informations publiées. La M.U.G décline toute responsabilité pour les éventuelles inexactitudes ou omissions.
+    </p>
+    <p>
+      Les liens hypertextes vers des sites extérieurs sont fournis à titre informatif. La M.U.G n'exerce aucun contrôle sur le contenu de ces sites et décline toute responsabilité quant à leur contenu.
+    </p>
+
+    <h2>5. Politique de confidentialité (RGPD)</h2>
+    <p>
+      Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la loi Informatique et Libertés du 6 janvier 1978 modifiée, nous vous informons de la manière dont vos données personnelles sont collectées et traitées.
+    </p>
+
+    <h3>5.1 Responsable du traitement</h3>
+    <p>
+      Le responsable du traitement des données est La M.U.G — La Maison Urbaine Générale, représentée par Fabrice Delvin, joignable à <a href="mailto:contactlamug@gmail.com">contactlamug@gmail.com</a>.
+    </p>
+
+    <h3>5.2 Données collectées</h3>
+    <p>Nous collectons les données suivantes via les formulaires du site :</p>
+    <ul>
+      <li>Nom et prénom</li>
+      <li>Adresse email</li>
+      <li>Numéro de téléphone (facultatif)</li>
+      <li>Nom de l'organisation</li>
+      <li>Contenu des messages envoyés via les formulaires de contact et de booking</li>
+    </ul>
+
+    <h3>5.3 Finalité du traitement</h3>
+    <p>Les données sont collectées pour les finalités suivantes :</p>
+    <ul>
+      <li>Répondre à vos demandes de contact et de booking</li>
+      <li>Établir des devis et propositions commerciales</li>
+      <li>Vous envoyer des informations relatives à nos services (avec votre consentement)</li>
+    </ul>
+
+    <h3>5.4 Base légale</h3>
+    <p>
+      Le traitement de vos données repose sur votre consentement (envoi volontaire du formulaire) et sur l'exécution de mesures précontractuelles (demande de devis, réservation).
+    </p>
+
+    <h3>5.5 Destinataires des données</h3>
+    <p>
+      Vos données sont transmises aux seuls membres de l'équipe La M.U.G en charge de répondre à vos demandes. Les formulaires sont traités par le service <strong>Formspree</strong> (Formspree, Inc., États-Unis) qui agit en tant que sous-traitant et s'engage à respecter le RGPD.
+    </p>
+
+    <h3>5.6 Durée de conservation</h3>
+    <p>
+      Vos données sont conservées pendant une durée maximale de 3 ans à compter de votre dernière interaction avec nous, sauf obligation légale de conservation plus longue.
+    </p>
+
+    <h3>5.7 Vos droits</h3>
+    <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+    <ul>
+      <li><strong>Droit d'accès</strong> : obtenir la confirmation que des données vous concernant sont traitées et en obtenir une copie</li>
+      <li><strong>Droit de rectification</strong> : demander la correction de données inexactes</li>
+      <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
+      <li><strong>Droit à la limitation</strong> : demander la limitation du traitement</li>
+      <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré</li>
+      <li><strong>Droit d'opposition</strong> : vous opposer au traitement de vos données</li>
+    </ul>
+    <p>
+      Pour exercer ces droits, contactez-nous à : <a href="mailto:contactlamug@gmail.com">contactlamug@gmail.com</a>
+    </p>
+    <p>
+      En cas de litige, vous pouvez introduire une réclamation auprès de la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) — <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>.
+    </p>
+
+    <h2>6. Cookies</h2>
+    <p>
+      Le site la-mug.com <strong>n'utilise aucun cookie de tracking, de publicité ou d'analyse</strong>. Aucun outil de mesure d'audience n'est installé. Seuls des cookies techniques strictement nécessaires au fonctionnement du site peuvent être déposés par l'hébergeur (Vercel).
+    </p>
+    <p>
+      Les vidéos YouTube intégrées sur le site peuvent déposer des cookies propres à Google/YouTube lorsque vous les visionnez. Pour en savoir plus, consultez la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">politique de confidentialité de Google</a>.
+    </p>
+
+    <h2>7. Crédits</h2>
+    <p>
+      Conception et développement : La M.U.G<br>
+      Photographies : La M.U.G / Droits réservés<br>
+      Typographies : Bebas Neue, Inter (Google Fonts — Licence libre)
+    </p>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p>
+        <a href="index.html">Accueil</a>
+        <a href="booking.html">Booking</a>
+        <a href="https://boutique.la-mug.com" target="_blank">Boutique</a>
+        <a href="index.html#contact">Contact</a>
+      </p>
+      <p style="margin-top:16px;">© 2026 La Maison Urbaine Générale — 11 Avenue Jacques Duclos, 93420 Villepinte</p>
+    </div>
+  </footer>
+
+</body>
+</html>
