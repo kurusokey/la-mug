@@ -1,12 +1,1263 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <meta http-equiv="refresh" content="0;url=https://boutique.la-mug.com/admin/marketing">
-  <title>Redirection — Dashboard Marketing</title>
+  <title>Dashboard — Gestion Produits — La M.U.G</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #C8A050;
+      --magenta: #8B6914;
+      --black: #0A0A0A;
+      --dark: #111111;
+      --card: #191919;
+      --border: #2a2a2a;
+      --white: #FFFFFF;
+      --gray: #888888;
+      --green: #2ECC71;
+      --red: #E74C3C;
+      --orange: #F39C12;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* =========== LOGIN =========== */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .login-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 3px;
+      color: var(--yellow);
+    }
+
+    .login-logo span { color: var(--white); }
+
+    .login-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .login-box p {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 24px;
+    }
+
+    .login-input {
+      width: 100%;
+      background: var(--black);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      outline: none;
+      text-align: center;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .login-input:focus { border-color: var(--yellow); }
+
+    .login-btn {
+      width: 100%;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .login-btn:hover { background: #D4AD5A; }
+
+    .login-error {
+      color: var(--red);
+      font-size: 13px;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* =========== DASHBOARD =========== */
+    #dashboard { display: none; }
+
+    .dash-header {
+      background: var(--dark);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .dash-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    .dash-logo span { color: var(--white); font-size: 16px; letter-spacing: 1px; }
+
+    .dash-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .dash-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 16px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dash-btn:hover { border-color: rgba(200,160,80,0.3); }
+
+    .dash-btn-primary {
+      background: var(--yellow);
+      color: var(--black);
+      border-color: var(--yellow);
+      font-weight: 700;
+    }
+
+    .dash-btn-primary:hover { background: #D4AD5A; border-color: #D4AD5A; }
+
+    .dash-btn-danger {
+      color: var(--red);
+      border-color: rgba(231,76,60,0.3);
+    }
+
+    .dash-btn-danger:hover { background: rgba(231,76,60,0.1); border-color: var(--red); }
+
+    .dash-body { padding: 32px; max-width: 1400px; margin: 0 auto; }
+
+    /* STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .stat-card-label {
+      font-size: 12px;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .stat-card-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: var(--yellow);
+      line-height: 1;
+    }
+
+    .stat-card-sub {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .stat-card-alert .stat-card-value { color: var(--red); }
+
+    /* TOOLBAR */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-left {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 14px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      width: 240px;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus { border-color: var(--yellow); }
+
+    .filter-select {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 14px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .filter-select option { background: var(--card); }
+
+    /* TABLE */
+    .products-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .products-table thead {
+      background: var(--dark);
+    }
+
+    .products-table th {
+      padding: 14px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .products-table th:hover { color: var(--yellow); }
+
+    .products-table th .sort-icon { font-size: 10px; margin-left: 4px; opacity: 0.4; }
+    .products-table th.sorted .sort-icon { opacity: 1; color: var(--yellow); }
+
+    .products-table td {
+      padding: 12px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .products-table tbody tr {
+      transition: background 0.15s;
+    }
+
+    .products-table tbody tr:hover { background: rgba(200,160,80,0.03); }
+    .products-table tbody tr:last-child td { border-bottom: none; }
+
+    .product-img-cell {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--dark);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-img-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-img-placeholder {
+      font-size: 20px;
+      opacity: 0.3;
+    }
+
+    .category-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .cat-cd { background: rgba(200,160,80,0.12); color: var(--yellow); }
+    .cat-vinyle { background: rgba(139,105,20,0.15); color: #D4AD5A; }
+    .cat-tshirt { background: rgba(46,204,113,0.12); color: var(--green); }
+    .cat-merch { background: rgba(243,156,18,0.12); color: var(--orange); }
+    .cat-digital { background: rgba(52,152,219,0.12); color: #3498DB; }
+
+    .status-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+    }
+
+    .status-dot::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .status-envente::before { background: var(--green); }
+    .status-envente { color: var(--green); }
+    .status-epuise::before { background: var(--red); }
+    .status-epuise { color: var(--red); }
+    .status-bientot::before { background: var(--orange); }
+    .status-bientot { color: var(--orange); }
+
+    .row-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .row-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 8px;
+      color: var(--gray);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .row-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+    .row-btn-del:hover { border-color: var(--red); color: var(--red); }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--gray);
+    }
+
+    .empty-state-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.3; }
+    .empty-state-text { font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.5); }
+    .empty-state-sub { font-size: 13px; }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-header {
+      padding: 24px 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+    }
+
+    .modal-close {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      color: var(--gray);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover { border-color: var(--white); color: var(--white); }
+
+    .modal-body { padding: 24px 28px 28px; }
+
+    .modal .form-group { margin-bottom: 18px; }
+
+    .modal .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .modal .form-group input,
+    .modal .form-group select,
+    .modal .form-group textarea {
+      width: 100%;
+      background: var(--black);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .modal .form-group input:focus,
+    .modal .form-group select:focus,
+    .modal .form-group textarea:focus {
+      border-color: var(--yellow);
+    }
+
+    .modal .form-group select option { background: var(--black); }
+    .modal .form-group textarea { resize: vertical; min-height: 80px; }
+
+    .modal .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .modal .form-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .modal-footer {
+      padding: 0 28px 24px;
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    /* CONFIRM DIALOG */
+    .confirm-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .confirm-overlay.active { display: flex; }
+
+    .confirm-box {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .confirm-box p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .confirm-box .confirm-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 14px;
+      color: var(--white);
+      z-index: 300;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* IMAGE PREVIEW */
+    .img-preview {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      margin-top: 8px;
+      display: none;
+    }
+
+    .img-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: #C8A050; border-radius: 3px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1100px) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .dash-header { padding: 12px 16px; flex-wrap: wrap; gap: 12px; }
+      .dash-body { padding: 16px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .stat-card { padding: 16px; }
+      .stat-card-value { font-size: 28px; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .toolbar-left { flex-direction: column; }
+      .search-input { width: 100%; }
+
+      .products-table { font-size: 13px; }
+      .products-table th, .products-table td { padding: 10px 12px; }
+      .col-desc, .col-artist { display: none; }
+
+      .modal .form-row, .modal .form-row-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .dash-actions { flex-wrap: wrap; }
+    }
+
+    @media (max-width: 500px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .col-img { display: none; }
+    }
+  </style>
 </head>
-<body style="background:#0A0A0A;color:#C8A050;font-family:system-ui;display:flex;align-items:center;justify-content:center;min-height:100vh;">
-  <p>Redirection vers le <a href="https://boutique.la-mug.com/admin/marketing" style="color:#C8A050;">dashboard marketing</a>...</p>
+<body>
+
+  <!-- =========== LOGIN =========== -->
+  <div id="loginScreen">
+    <div class="login-logo">LA <span>M.U.G</span></div>
+    <div class="login-box">
+      <h2>Dashboard</h2>
+      <p>Gestion des produits</p>
+      <input type="password" class="login-input" id="loginPassword" placeholder="Mot de passe" autofocus>
+      <button class="login-btn" onclick="tryLogin()">Connexion</button>
+      <div class="login-error" id="loginError">Mot de passe incorrect</div>
+    </div>
+    <a href="index.html" style="color:var(--gray); font-size:13px; text-decoration:none;">← Retour au site</a>
+  </div>
+
+  <!-- =========== DASHBOARD =========== -->
+  <div id="dashboard">
+    <!-- HEADER -->
+    <div class="dash-header">
+      <a href="index.html" class="dash-logo">LA M.U.G <span>/ Produits</span></a>
+      <div class="dash-actions">
+        <button class="dash-btn" onclick="exportCSV()" title="Exporter l'inventaire en CSV">CSV</button>
+        <button class="dash-btn" onclick="exportJSON()" title="Sauvegarder les données">Backup</button>
+        <label class="dash-btn" title="Restaurer les données">
+          Importer
+          <input type="file" accept=".json" onchange="importJSON(event)" style="display:none;">
+        </label>
+        <button class="dash-btn dash-btn-primary" onclick="openModal()">+ Nouveau produit</button>
+        <button class="dash-btn dash-btn-danger" onclick="doLogout()" title="Déconnexion">Quitter</button>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="dash-body">
+
+      <!-- STATS -->
+      <div class="stats-grid" id="statsGrid"></div>
+
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <input type="text" class="search-input" id="searchInput" placeholder="Rechercher un produit..." oninput="renderTable()">
+          <select class="filter-select" id="filterCategory" onchange="renderTable()">
+            <option value="">Toutes les catégories</option>
+            <option value="CD">CD</option>
+            <option value="Vinyle">Vinyle</option>
+            <option value="T-shirt">T-shirt</option>
+            <option value="Merchandising">Merchandising</option>
+            <option value="Digital">Digital</option>
+          </select>
+          <select class="filter-select" id="filterStatus" onchange="renderTable()">
+            <option value="">Tous les statuts</option>
+            <option value="En vente">En vente</option>
+            <option value="Épuisé">Épuisé</option>
+            <option value="Bientôt disponible">Bientôt disponible</option>
+          </select>
+        </div>
+        <div style="font-size:13px; color:var(--gray);" id="resultCount"></div>
+      </div>
+
+      <!-- TABLE -->
+      <div id="tableContainer"></div>
+    </div>
+  </div>
+
+  <!-- =========== MODAL PRODUIT =========== -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Nouveau produit</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editId">
+
+        <div class="form-group">
+          <label>Nom du produit *</label>
+          <input type="text" id="prodName" placeholder="Ex: Chanteur de Rap — Album CD">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Catégorie *</label>
+            <select id="prodCategory">
+              <option value="CD">CD</option>
+              <option value="Vinyle">Vinyle</option>
+              <option value="T-shirt">T-shirt</option>
+              <option value="Merchandising">Merchandising</option>
+              <option value="Digital">Digital</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Artiste</label>
+            <input type="text" id="prodArtist" placeholder="Fdy Phenomen" value="Fdy Phenomen">
+          </div>
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label>Prix (€) *</label>
+            <input type="number" id="prodPrice" step="0.01" min="0" placeholder="15.00">
+          </div>
+          <div class="form-group">
+            <label>Stock</label>
+            <input type="number" id="prodStock" min="0" placeholder="50" value="0">
+          </div>
+          <div class="form-group">
+            <label>Statut</label>
+            <select id="prodStatus">
+              <option value="En vente">En vente</option>
+              <option value="Épuisé">Épuisé</option>
+              <option value="Bientôt disponible">Bientôt disponible</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="prodDesc" placeholder="Description du produit..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>URL de l'image</label>
+          <input type="url" id="prodImage" placeholder="https://..." oninput="previewImage()">
+          <div class="img-preview" id="imgPreview">
+            <img id="imgPreviewSrc" src="" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="dash-btn" onclick="closeModal()">Annuler</button>
+        <button class="dash-btn dash-btn-primary" onclick="saveProduct()">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========== CONFIRM DIALOG =========== -->
+  <div class="confirm-overlay" id="confirmDialog">
+    <div class="confirm-box">
+      <p id="confirmText">Supprimer ce produit ?</p>
+      <div class="confirm-actions">
+        <button class="dash-btn" onclick="closeConfirm()">Annuler</button>
+        <button class="dash-btn dash-btn-danger" id="confirmBtn" onclick="confirmAction()">Supprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ============================================
+    // CONFIG
+    // ============================================
+    const STORAGE_KEY = 'lamug_products';
+    const AUTH_HASH = '6a719fcef6ce8e1a064dd46a2f06e9db5e743bd62fda9254a3fdd2e588fe08ac';
+
+    // ============================================
+    // AUTH
+    // ============================================
+    async function sha256(text) {
+      const data = new TextEncoder().encode(text);
+      const hash = await crypto.subtle.digest('SHA-256', data);
+      return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function tryLogin() {
+      const pw = document.getElementById('loginPassword').value;
+      const hash = await sha256(pw);
+      if (hash === AUTH_HASH) {
+        sessionStorage.setItem('lamug_auth', '1');
+        showDashboard();
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginPassword').focus();
+      }
+    }
+
+    document.getElementById('loginPassword').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') tryLogin();
+    });
+
+    function doLogout() {
+      sessionStorage.removeItem('lamug_auth');
+      location.reload();
+    }
+
+    function showDashboard() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      renderStats();
+      renderTable();
+    }
+
+    // Auto-login if session active
+    if (sessionStorage.getItem('lamug_auth') === '1') {
+      showDashboard();
+    }
+
+    // ============================================
+    // DATA
+    // ============================================
+    function getProducts() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch { return []; }
+    }
+
+    function saveProducts(products) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+    }
+
+    // ============================================
+    // STATS
+    // ============================================
+    function renderStats() {
+      const products = getProducts();
+      const total = products.length;
+      const categories = {};
+      let totalValue = 0;
+      let outOfStock = 0;
+
+      products.forEach(p => {
+        categories[p.category] = (categories[p.category] || 0) + 1;
+        totalValue += (p.price || 0) * (p.stock || 0);
+        if (p.status === 'Épuisé' || p.stock === 0) outOfStock++;
+      });
+
+      const topCat = Object.entries(categories).sort((a, b) => b[1] - a[1]);
+      const catSummary = topCat.map(([cat, count]) => `${cat}: ${count}`).join(', ') || 'Aucun';
+
+      document.getElementById('statsGrid').innerHTML = `
+        <div class="stat-card">
+          <div class="stat-card-label">Total produits</div>
+          <div class="stat-card-value">${total}</div>
+          <div class="stat-card-sub">${topCat.length} catégorie${topCat.length > 1 ? 's' : ''}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Valeur du stock</div>
+          <div class="stat-card-value">${totalValue.toLocaleString('fr-FR', {minimumFractionDigits: 0})} €</div>
+          <div class="stat-card-sub">Prix × quantité</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">En vente</div>
+          <div class="stat-card-value">${products.filter(p => p.status === 'En vente').length}</div>
+          <div class="stat-card-sub">Produits actifs</div>
+        </div>
+        <div class="stat-card ${outOfStock > 0 ? 'stat-card-alert' : ''}">
+          <div class="stat-card-label">Épuisés</div>
+          <div class="stat-card-value">${outOfStock}</div>
+          <div class="stat-card-sub">${outOfStock > 0 ? 'Attention — réapprovisionner' : 'Tout est en stock'}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Répartition</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.7); margin-top:8px; line-height:1.8;">${catSummary}</div>
+        </div>
+      `;
+    }
+
+    // ============================================
+    // TABLE
+    // ============================================
+    let sortField = 'createdAt';
+    let sortDir = 'desc';
+
+    function getFilteredProducts() {
+      let products = getProducts();
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+      const catFilter = document.getElementById('filterCategory').value;
+      const statusFilter = document.getElementById('filterStatus').value;
+
+      if (search) {
+        products = products.filter(p =>
+          p.name.toLowerCase().includes(search) ||
+          (p.artist || '').toLowerCase().includes(search) ||
+          (p.description || '').toLowerCase().includes(search)
+        );
+      }
+      if (catFilter) products = products.filter(p => p.category === catFilter);
+      if (statusFilter) products = products.filter(p => p.status === statusFilter);
+
+      products.sort((a, b) => {
+        let va = a[sortField], vb = b[sortField];
+        if (sortField === 'price' || sortField === 'stock') {
+          va = Number(va) || 0;
+          vb = Number(vb) || 0;
+        } else if (typeof va === 'string') {
+          va = va.toLowerCase();
+          vb = (vb || '').toLowerCase();
+        }
+        if (va < vb) return sortDir === 'asc' ? -1 : 1;
+        if (va > vb) return sortDir === 'asc' ? 1 : -1;
+        return 0;
+      });
+
+      return products;
+    }
+
+    function setSort(field) {
+      if (sortField === field) {
+        sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortField = field;
+        sortDir = 'asc';
+      }
+      renderTable();
+    }
+
+    function getCategoryClass(cat) {
+      const map = { CD: 'cat-cd', Vinyle: 'cat-vinyle', 'T-shirt': 'cat-tshirt', Merchandising: 'cat-merch', Digital: 'cat-digital' };
+      return map[cat] || 'cat-cd';
+    }
+
+    function getStatusClass(status) {
+      if (status === 'En vente') return 'status-envente';
+      if (status === 'Épuisé') return 'status-epuise';
+      return 'status-bientot';
+    }
+
+    function sortIcon(field) {
+      const active = sortField === field;
+      const arrow = active ? (sortDir === 'asc' ? '▲' : '▼') : '▲';
+      return `<span class="sort-icon">${arrow}</span>`;
+    }
+
+    function renderTable() {
+      const products = getFilteredProducts();
+      document.getElementById('resultCount').textContent = `${products.length} produit${products.length !== 1 ? 's' : ''}`;
+
+      if (products.length === 0) {
+        const hasAny = getProducts().length > 0;
+        document.getElementById('tableContainer').innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">${hasAny ? '🔍' : '📦'}</div>
+            <div class="empty-state-text">${hasAny ? 'Aucun produit trouvé' : 'Aucun produit pour le moment'}</div>
+            <div class="empty-state-sub">${hasAny ? 'Essayez de modifier vos filtres' : 'Cliquez sur "Nouveau produit" pour commencer'}</div>
+          </div>
+        `;
+        return;
+      }
+
+      let html = `
+        <table class="products-table">
+          <thead>
+            <tr>
+              <th class="col-img" style="width:60px;"></th>
+              <th onclick="setSort('name')" class="${sortField === 'name' ? 'sorted' : ''}">Nom ${sortIcon('name')}</th>
+              <th onclick="setSort('category')" class="${sortField === 'category' ? 'sorted' : ''}">Catégorie ${sortIcon('category')}</th>
+              <th class="col-artist" onclick="setSort('artist')" class="${sortField === 'artist' ? 'sorted' : ''}">Artiste ${sortIcon('artist')}</th>
+              <th onclick="setSort('price')" class="${sortField === 'price' ? 'sorted' : ''}">Prix ${sortIcon('price')}</th>
+              <th onclick="setSort('stock')" class="${sortField === 'stock' ? 'sorted' : ''}">Stock ${sortIcon('stock')}</th>
+              <th onclick="setSort('status')" class="${sortField === 'status' ? 'sorted' : ''}">Statut ${sortIcon('status')}</th>
+              <th style="width:120px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      products.forEach(p => {
+        const imgCell = p.image
+          ? `<div class="product-img-cell"><img src="${escapeHtml(p.image)}" alt="" onerror="this.parentElement.innerHTML='<div class=product-img-placeholder>📦</div>'"></div>`
+          : `<div class="product-img-cell"><div class="product-img-placeholder">📦</div></div>`;
+
+        html += `
+          <tr>
+            <td class="col-img">${imgCell}</td>
+            <td><strong>${escapeHtml(p.name)}</strong></td>
+            <td><span class="category-badge ${getCategoryClass(p.category)}">${escapeHtml(p.category)}</span></td>
+            <td class="col-artist" style="color:var(--gray);">${escapeHtml(p.artist || '—')}</td>
+            <td style="font-weight:600;">${Number(p.price).toLocaleString('fr-FR', {minimumFractionDigits: 2})} €</td>
+            <td>${p.stock}</td>
+            <td><span class="status-dot ${getStatusClass(p.status)}">${escapeHtml(p.status)}</span></td>
+            <td>
+              <div class="row-actions">
+                <button class="row-btn" onclick="editProduct('${p.id}')" title="Modifier">✎</button>
+                <button class="row-btn" onclick="duplicateProduct('${p.id}')" title="Dupliquer">⧉</button>
+                <button class="row-btn row-btn-del" onclick="deleteProduct('${p.id}')" title="Supprimer">✕</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody></table>';
+      document.getElementById('tableContainer').innerHTML = html;
+    }
+
+    // ============================================
+    // MODAL (CREATE / EDIT)
+    // ============================================
+    function openModal(product) {
+      document.getElementById('editId').value = product ? product.id : '';
+      document.getElementById('prodName').value = product ? product.name : '';
+      document.getElementById('prodCategory').value = product ? product.category : 'CD';
+      document.getElementById('prodArtist').value = product ? product.artist : 'Fdy Phenomen';
+      document.getElementById('prodPrice').value = product ? product.price : '';
+      document.getElementById('prodStock').value = product ? product.stock : 0;
+      document.getElementById('prodStatus').value = product ? product.status : 'En vente';
+      document.getElementById('prodDesc').value = product ? product.description : '';
+      document.getElementById('prodImage').value = product ? (product.image || '') : '';
+      document.getElementById('modalTitle').textContent = product ? 'Modifier le produit' : 'Nouveau produit';
+      previewImage();
+      document.getElementById('productModal').classList.add('active');
+      document.getElementById('prodName').focus();
+    }
+
+    function closeModal() {
+      document.getElementById('productModal').classList.remove('active');
+    }
+
+    function saveProduct() {
+      const name = document.getElementById('prodName').value.trim();
+      const price = document.getElementById('prodPrice').value;
+
+      if (!name) { toast('Veuillez saisir un nom de produit', 'warn'); return; }
+      if (!price && price !== 0) { toast('Veuillez saisir un prix', 'warn'); return; }
+
+      const products = getProducts();
+      const editId = document.getElementById('editId').value;
+
+      const productData = {
+        name,
+        category: document.getElementById('prodCategory').value,
+        artist: document.getElementById('prodArtist').value.trim(),
+        price: parseFloat(price) || 0,
+        stock: parseInt(document.getElementById('prodStock').value) || 0,
+        status: document.getElementById('prodStatus').value,
+        description: document.getElementById('prodDesc').value.trim(),
+        image: document.getElementById('prodImage').value.trim(),
+      };
+
+      if (editId) {
+        const idx = products.findIndex(p => p.id === editId);
+        if (idx !== -1) {
+          products[idx] = { ...products[idx], ...productData, updatedAt: new Date().toISOString() };
+        }
+        toast('Produit modifié');
+      } else {
+        productData.id = 'p_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+        productData.createdAt = new Date().toISOString();
+        productData.updatedAt = new Date().toISOString();
+        products.unshift(productData);
+        toast('Produit ajouté');
+      }
+
+      saveProducts(products);
+      closeModal();
+      renderStats();
+      renderTable();
+    }
+
+    function editProduct(id) {
+      const product = getProducts().find(p => p.id === id);
+      if (product) openModal(product);
+    }
+
+    function duplicateProduct(id) {
+      const products = getProducts();
+      const source = products.find(p => p.id === id);
+      if (!source) return;
+
+      const dup = {
+        ...source,
+        id: 'p_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+        name: source.name + ' (copie)',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+
+      products.unshift(dup);
+      saveProducts(products);
+      renderStats();
+      renderTable();
+      toast('Produit dupliqué');
+    }
+
+    // ============================================
+    // DELETE
+    // ============================================
+    let pendingDeleteId = null;
+
+    function deleteProduct(id) {
+      const product = getProducts().find(p => p.id === id);
+      if (!product) return;
+      pendingDeleteId = id;
+      document.getElementById('confirmText').innerHTML = `Supprimer <strong>${escapeHtml(product.name)}</strong> ?<br><span style="font-size:13px;color:var(--gray);">Cette action est irréversible.</span>`;
+      document.getElementById('confirmDialog').classList.add('active');
+    }
+
+    function confirmAction() {
+      if (pendingDeleteId) {
+        let products = getProducts().filter(p => p.id !== pendingDeleteId);
+        saveProducts(products);
+        pendingDeleteId = null;
+        closeConfirm();
+        renderStats();
+        renderTable();
+        toast('Produit supprimé');
+      }
+    }
+
+    function closeConfirm() {
+      document.getElementById('confirmDialog').classList.remove('active');
+      pendingDeleteId = null;
+    }
+
+    // ============================================
+    // EXPORT / IMPORT
+    // ============================================
+    function exportCSV() {
+      const products = getProducts();
+      if (products.length === 0) { toast('Aucun produit à exporter', 'warn'); return; }
+
+      const headers = ['Nom', 'Catégorie', 'Artiste', 'Prix (€)', 'Stock', 'Statut', 'Description', 'Image', 'Date création'];
+      const rows = products.map(p => [
+        p.name, p.category, p.artist || '', p.price, p.stock, p.status,
+        (p.description || '').replace(/"/g, '""'), p.image || '',
+        p.createdAt ? new Date(p.createdAt).toLocaleDateString('fr-FR') : ''
+      ]);
+
+      let csv = '\uFEFF'; // BOM for Excel
+      csv += headers.join(';') + '\n';
+      rows.forEach(row => {
+        csv += row.map(v => `"${v}"`).join(';') + '\n';
+      });
+
+      downloadFile(csv, `lamug-produits-${dateStr()}.csv`, 'text/csv;charset=utf-8');
+      toast('Export CSV téléchargé');
+    }
+
+    function exportJSON() {
+      const products = getProducts();
+      const data = JSON.stringify({ products, exportedAt: new Date().toISOString(), count: products.length }, null, 2);
+      downloadFile(data, `lamug-backup-${dateStr()}.json`, 'application/json');
+      toast('Backup JSON téléchargé');
+    }
+
+    function importJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          const products = data.products;
+          if (!Array.isArray(products)) throw new Error('Format invalide');
+
+          // Validate minimal structure
+          products.forEach(p => {
+            if (!p.name || !p.id) throw new Error('Données manquantes');
+          });
+
+          saveProducts(products);
+          renderStats();
+          renderTable();
+          toast(`${products.length} produit${products.length > 1 ? 's' : ''} importé${products.length > 1 ? 's' : ''}`);
+        } catch (err) {
+          toast('Erreur : fichier invalide', 'warn');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    // ============================================
+    // UTILS
+    // ============================================
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function downloadFile(content, filename, mime) {
+      const blob = new Blob([content], { type: mime });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function dateStr() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    function toast(msg, type) {
+      const el = document.getElementById('toast');
+      el.innerHTML = (type === 'warn' ? '⚠️ ' : '✓ ') + escapeHtml(msg);
+      el.style.borderColor = type === 'warn' ? 'var(--orange)' : 'var(--yellow)';
+      el.classList.add('show');
+      clearTimeout(el._timer);
+      el._timer = setTimeout(() => el.classList.remove('show'), 3000);
+    }
+
+    function previewImage() {
+      const url = document.getElementById('prodImage').value.trim();
+      const container = document.getElementById('imgPreview');
+      const img = document.getElementById('imgPreviewSrc');
+      if (url) {
+        img.src = url;
+        img.onerror = () => { container.style.display = 'none'; };
+        container.style.display = 'block';
+      } else {
+        container.style.display = 'none';
+      }
+    }
+
+    // Close modals on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeConfirm();
+      }
+    });
+
+    // Close modal on overlay click
+    document.getElementById('productModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+    document.getElementById('confirmDialog').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeConfirm();
+    });
+  </script>
+
 </body>
 </html>
