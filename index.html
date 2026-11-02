@@ -480,11 +480,18 @@
     }
 
     .programmes-tabs {
+      animation: fadeInUp 1.4s ease-out;
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-top: 32px;
+      max-width: 600px;
+      position: relative;
+      width: 100%;
+      z-index: 2;
     }
+
+    .programmes { scroll-margin-top: 110px; }
 
     .programmes-tab {
       flex: 1 1 160px;
@@ -986,13 +993,6 @@
         height: 80px !important;
       }
 
-      /* Hero — equalizer button bigger tap target */
-      .hero-equalizer-btn {
-        min-width: 56px;
-        min-height: 48px;
-        padding: 12px 20px !important;
-      }
-
       /* Hero — stats 2x2 grid on mobile */
       .hero-stats-bar {
         display: grid !important;
@@ -1208,20 +1208,6 @@
       to { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
-    /* Equalizer bars */
-    @keyframes eqBar1 {
-      0%, 100% { height: 8px; }
-      50% { height: 35px; }
-    }
-    @keyframes eqBar2 {
-      0%, 100% { height: 15px; }
-      50% { height: 28px; }
-    }
-    @keyframes eqBar3 {
-      0%, 100% { height: 5px; }
-      50% { height: 40px; }
-    }
-
     /* Fade in from below */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -1317,20 +1303,11 @@
       <img class="hero-logo" src="logo-la-mug-white.png" alt="La M.U.G" style="height:120px; width:auto; opacity:0.9; filter:drop-shadow(0 0 40px rgba(200,160,80,0.15)); animation:glowPulse 4s ease-in-out infinite;" />
     </div>
 
-    <!-- Equalizer cliquable — contrôle la musique -->
-    <button id="musicToggle" class="hero-equalizer-btn" onclick="toggleMusic()" style="display:flex; align-items:flex-end; gap:4px; height:40px; margin-top:32px; position:relative; z-index:2; background:none; border:none; cursor:pointer; padding:8px 16px; border-radius:8px; transition:background 0.3s;" onmouseover="this.style.background='rgba(200,160,80,0.08)'" onmouseout="this.style.background='none'" aria-label="Écouter ou arrêter la musique">
-      <div id="eq1" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:8px; transition:height 0.3s;"></div>
-      <div id="eq2" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:12px; transition:height 0.3s;"></div>
-      <div id="eq3" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:6px; transition:height 0.3s;"></div>
-      <div id="eq4" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:10px; transition:height 0.3s;"></div>
-      <div id="eq5" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:14px; transition:height 0.3s;"></div>
-      <div id="eq6" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:7px; transition:height 0.3s;"></div>
-      <div id="eq7" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:11px; transition:height 0.3s;"></div>
-    </button>
-
-    <!-- YouTube player — visible mais minuscule (nécessaire pour mobile) -->
-    <div id="ytPlayerWrapper" style="position:fixed; bottom:8px; right:8px; z-index:9998; width:1px; height:1px; overflow:hidden; opacity:0; pointer-events:none; transition:all 0.3s;">
-      <div id="ytPlayer"></div>
+    <!-- Onglets publics -->
+    <div class="programmes-tabs" role="tablist" aria-label="Votre profil">
+      <button class="programmes-tab" id="tab-particulier" type="button" role="tab" aria-selected="true" aria-controls="panel-particulier" tabindex="0">Particulier</button>
+      <button class="programmes-tab" id="tab-professionnels" type="button" role="tab" aria-selected="false" aria-controls="panel-professionnels" tabindex="-1">Professionnels</button>
+      <button class="programmes-tab" id="tab-collectivites" type="button" role="tab" aria-selected="false" aria-controls="panel-collectivites" tabindex="-1">Collectivités</button>
     </div>
 
     <!-- Texte principal -->
@@ -1340,7 +1317,7 @@
         L'art du <span style="color:#C8A050;">rap</span><br>
         au service de<br>
         <span style="color:#C8A050; position:relative; display:inline-block;">
-          votre développement
+          votre développement personnel
           <span style="position:absolute; bottom:-4px; left:0; right:0; height:3px; background:linear-gradient(90deg, transparent, #C8A050, transparent);"></span>
         </span>
       </h1>
@@ -1444,11 +1421,6 @@
         <p class="section-desc">Chaque atelier est conçu pour 12 participants maximum, en séances de 2 heures. Ils peuvent être combinés et adaptés à vos objectifs spécifiques.</p>
       </div>
       <div class="programmes">
-        <div class="programmes-tabs" role="tablist" aria-label="Votre profil">
-          <button class="programmes-tab" id="tab-particulier" type="button" role="tab" aria-selected="true" aria-controls="panel-particulier" tabindex="0">Particulier</button>
-          <button class="programmes-tab" id="tab-professionnels" type="button" role="tab" aria-selected="false" aria-controls="panel-professionnels" tabindex="-1">Professionnels</button>
-          <button class="programmes-tab" id="tab-collectivites" type="button" role="tab" aria-selected="false" aria-controls="panel-collectivites" tabindex="-1">Collectivités</button>
-        </div>
         <div class="programmes-panel" id="panel-particulier" role="tabpanel" aria-labelledby="tab-particulier" data-cta="Choisis ton atelier.">
           <h3 class="programmes-title">Programmes sur mesure pour :</h3>
           <ul class="programmes-list">
@@ -1962,12 +1934,8 @@
   <script>
     // ============================================
     // GESTIONNAIRE AUDIO CENTRAL
-    // Un seul son à la fois : equalizer OU vidéo 1 OU vidéo 2
+    // Un seul son à la fois : vidéo 1 OU vidéo 2
     // ============================================
-    let musicPlaying = false;
-    let eqInterval = null;
-    let ytPlayer = null;
-    let ytReady = false;
     let videoPlayer1 = null;
     let videoPlayer2 = null;
 
@@ -1980,12 +1948,6 @@
 
     // Stopper TOUS les sons
     function stopAll() {
-      // Stopper l'equalizer audio
-      if (musicPlaying) {
-        if (ytPlayer && ytReady) ytPlayer.pauseVideo();
-        musicPlaying = false;
-        stopEqualizer();
-      }
       // Stopper les vidéos ateliers
       if (videoPlayer1) try { videoPlayer1.pauseVideo(); } catch(e) {}
       if (videoPlayer2) try { videoPlayer2.pauseVideo(); } catch(e) {}
@@ -1997,35 +1959,12 @@
     document.head.appendChild(tag);
 
     window.onYouTubeIframeAPIReady = function() {
-      // Player audio (equalizer)
-      ytPlayer = new YT.Player('ytPlayer', {
-        height: '1',
-        width: '1',
-        videoId: 'LtSHe2ZCrrA',
-        playerVars: {
-          autoplay: 0, controls: 0, showinfo: 0,
-          modestbranding: 1, rel: 0, loop: 1,
-          playlist: 'LtSHe2ZCrrA', playsinline: 1
-        },
-        events: {
-          onReady: function() { ytReady = true; },
-          onStateChange: function(e) {
-            if (e.data === YT.PlayerState.ENDED) ytPlayer.playVideo();
-          }
-        }
-      });
-
       // Players vidéo ateliers
       videoPlayer1 = new YT.Player('videoAtelier1', {
         events: {
           onStateChange: function(e) {
             // Quand cette vidéo joue, stopper tout le reste
             if (e.data === YT.PlayerState.PLAYING) {
-              if (musicPlaying) {
-                ytPlayer.pauseVideo();
-                musicPlaying = false;
-                stopEqualizer();
-              }
               if (videoPlayer2) try { videoPlayer2.pauseVideo(); } catch(err) {}
             }
           }
@@ -2036,67 +1975,12 @@
         events: {
           onStateChange: function(e) {
             if (e.data === YT.PlayerState.PLAYING) {
-              if (musicPlaying) {
-                ytPlayer.pauseVideo();
-                musicPlaying = false;
-                stopEqualizer();
-              }
               if (videoPlayer1) try { videoPlayer1.pauseVideo(); } catch(err) {}
             }
           }
         }
       });
     };
-
-    function toggleMusic() {
-      if (!ytReady) {
-        setTimeout(toggleMusic, 500);
-        return;
-      }
-
-      if (musicPlaying) {
-        ytPlayer.pauseVideo();
-        musicPlaying = false;
-        stopEqualizer();
-      } else {
-        // Stopper les vidéos ateliers d'abord
-        if (videoPlayer1) try { videoPlayer1.pauseVideo(); } catch(e) {}
-        if (videoPlayer2) try { videoPlayer2.pauseVideo(); } catch(e) {}
-        ytPlayer.playVideo();
-        musicPlaying = true;
-        startEqualizer();
-      }
-    }
-
-    function startEqualizer() {
-      const bars = [
-        document.getElementById('eq1'),
-        document.getElementById('eq2'),
-        document.getElementById('eq3'),
-        document.getElementById('eq4'),
-        document.getElementById('eq5'),
-        document.getElementById('eq6'),
-        document.getElementById('eq7')
-      ];
-
-      eqInterval = setInterval(() => {
-        bars.forEach(bar => {
-          const h = Math.random() * 32 + 5;
-          bar.style.height = h + 'px';
-        });
-      }, 150);
-    }
-
-    function stopEqualizer() {
-      if (eqInterval) {
-        clearInterval(eqInterval);
-        eqInterval = null;
-      }
-      const heights = [8, 12, 6, 10, 14, 7, 11];
-      for (let i = 1; i <= 7; i++) {
-        document.getElementById('eq' + i).style.height = heights[i-1] + 'px';
-      }
-    }
 
     // ============================================
     // LIGHTBOX GALERIE PHOTOS
@@ -2239,7 +2123,10 @@
       });
     }
     programmesTabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => selectProgrammesTab(tab));
+      tab.addEventListener('click', () => {
+        selectProgrammesTab(tab);
+        document.querySelector('.programmes').scrollIntoView();
+      });
       tab.addEventListener('keydown', (e) => {
         if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
         e.preventDefault();
