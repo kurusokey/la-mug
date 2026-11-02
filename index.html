@@ -479,6 +479,88 @@
       gap: 24px;
     }
 
+    .programmes-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .programmes-tab {
+      flex: 1 1 160px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--light);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 20px;
+      transition: border-color 0.3s, background 0.3s, color 0.3s;
+    }
+
+    .programmes-tab:hover { border-color: rgba(200,160,80,0.3); }
+
+    .programmes-tab[aria-selected="true"] {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: var(--black);
+    }
+
+    .programmes-tab:focus-visible {
+      outline: 2px solid var(--light);
+      outline-offset: 2px;
+    }
+
+    .programmes-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 40px;
+      padding: 36px;
+    }
+
+    .programmes-title {
+      color: var(--yellow);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 1px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .programmes-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .programmes-list li {
+      color: rgba(255,255,255,0.8);
+      font-size: 16px;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .programmes-list li::before {
+      content: '●';
+      color: var(--yellow);
+      font-size: 9px;
+      left: 0;
+      position: absolute;
+      top: 8px;
+    }
+
+    .programmes-cta {
+      color: var(--white);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 34px;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
     .ateliers-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -904,12 +986,6 @@
         padding: 12px 20px !important;
       }
 
-      /* Hero — music hint visible */
-      .hero-music-hint {
-        font-size: 11px !important;
-        color: rgba(200,160,80,0.5) !important;
-      }
-
       /* Hero — stats 2x2 grid on mobile */
       .hero-stats-bar {
         display: grid !important;
@@ -1025,6 +1101,20 @@
       }
       .atelier-name {
         font-size: 24px;
+      }
+
+      /* Onglets programmes — sur une seule ligne */
+      .programmes-tabs {
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .programmes-tab {
+        flex: 1 1 0;
+        font-size: 13px;
+        padding: 12px 4px;
+      }
+      .programmes-panel {
+        padding: 24px 16px;
       }
 
       /* Client badges — full width */
@@ -1221,7 +1311,7 @@
     </div>
 
     <!-- Equalizer cliquable — contrôle la musique -->
-    <button id="musicToggle" class="hero-equalizer-btn" onclick="toggleMusic()" style="display:flex; align-items:flex-end; gap:4px; height:40px; margin-top:32px; position:relative; z-index:2; background:none; border:none; cursor:pointer; padding:8px 16px; border-radius:8px; transition:background 0.3s;" onmouseover="this.style.background='rgba(200,160,80,0.08)'" onmouseout="this.style.background='none'" title="Cliquez pour écouter">
+    <button id="musicToggle" class="hero-equalizer-btn" onclick="toggleMusic()" style="display:flex; align-items:flex-end; gap:4px; height:40px; margin-top:32px; position:relative; z-index:2; background:none; border:none; cursor:pointer; padding:8px 16px; border-radius:8px; transition:background 0.3s;" onmouseover="this.style.background='rgba(200,160,80,0.08)'" onmouseout="this.style.background='none'" aria-label="Écouter ou arrêter la musique">
       <div id="eq1" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:8px; transition:height 0.3s;"></div>
       <div id="eq2" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:12px; transition:height 0.3s;"></div>
       <div id="eq3" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:6px; transition:height 0.3s;"></div>
@@ -1230,7 +1320,6 @@
       <div id="eq6" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:7px; transition:height 0.3s;"></div>
       <div id="eq7" style="width:4px; background:linear-gradient(to top, #8B6914, #C8A050); border-radius:2px; height:11px; transition:height 0.3s;"></div>
     </button>
-    <p id="musicHint" class="hero-music-hint" style="font-size:10px; color:rgba(200,160,80,0.3); margin-top:8px; position:relative; z-index:2; letter-spacing:2px; text-transform:uppercase;">▶ Cliquez pour écouter</p>
 
     <!-- YouTube player — visible mais minuscule (nécessaire pour mobile) -->
     <div id="ytPlayerWrapper" style="position:fixed; bottom:8px; right:8px; z-index:9998; width:1px; height:1px; overflow:hidden; opacity:0; pointer-events:none; transition:all 0.3s;">
@@ -1241,10 +1330,10 @@
     <div style="position:relative; z-index:2; margin-top:40px; animation:fadeInUp 1.5s ease-out;">
       <p style="font-size:12px; text-transform:uppercase; letter-spacing:6px; color:#C8A050; opacity:0.6;">La Maison Urbaine Générale</p>
       <h1 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(42px, 8vw, 80px); line-height:1; margin-top:16px; color:white; text-shadow:0 2px 30px rgba(200,160,80,0.15);">
-        L'ART DU <span style="color:#C8A050;">RAP</span><br>
-        AU SERVICE DE<br>
+        L'art du <span style="color:#C8A050;">rap</span><br>
+        au service de<br>
         <span style="color:#C8A050; position:relative; display:inline-block;">
-          VOS ÉQUIPES
+          votre développement
           <span style="position:absolute; bottom:-4px; left:0; right:0; height:3px; background:linear-gradient(90deg, transparent, #C8A050, transparent);"></span>
         </span>
       </h1>
@@ -1253,7 +1342,7 @@
     <!-- Sous-texte -->
     <div style="position:relative; z-index:2; margin-top:24px; max-width:600px; animation:fadeInUp 1.8s ease-out;">
       <p style="font-size:16px; color:rgba(255,255,255,0.45); line-height:1.7;">
-        Ateliers rap, enregistrement, clip vidéo, débats — La M.U.G transforme la culture hip-hop en outil de cohésion et d'expression.
+        La M.U.G transforme la culture rap pour créer ton espace de cohésion et de développement.
       </p>
     </div>
 
@@ -1346,6 +1435,38 @@
           <h2 class="section-title">4 <span>formats</span> pour<br>tous les besoins</h2>
         </div>
         <p class="section-desc">Chaque atelier est conçu pour 12 participants maximum, en séances de 2 heures. Ils peuvent être combinés et adaptés à vos objectifs spécifiques.</p>
+      </div>
+      <div class="programmes">
+        <div class="programmes-tabs" role="tablist" aria-label="Votre profil">
+          <button class="programmes-tab" id="tab-particulier" type="button" role="tab" aria-selected="true" aria-controls="panel-particulier" tabindex="0">Particulier</button>
+          <button class="programmes-tab" id="tab-professionnels" type="button" role="tab" aria-selected="false" aria-controls="panel-professionnels" tabindex="-1">Professionnels</button>
+          <button class="programmes-tab" id="tab-collectivites" type="button" role="tab" aria-selected="false" aria-controls="panel-collectivites" tabindex="-1">Collectivités</button>
+        </div>
+        <div class="programmes-panel" id="panel-particulier" role="tabpanel" aria-labelledby="tab-particulier" data-cta="Choisis ton atelier.">
+          <h3 class="programmes-title">Programmes sur mesure pour :</h3>
+          <ul class="programmes-list">
+            <li>parler en public et gérer le stress</li>
+            <li>optimiser ton image et ta gestuelle</li>
+            <li>améliorer ton expression</li>
+          </ul>
+        </div>
+        <div class="programmes-panel" id="panel-professionnels" role="tabpanel" aria-labelledby="tab-professionnels" data-cta="Choisissez votre atelier." hidden>
+          <h3 class="programmes-title">Programmes sur mesure pour vos équipes :</h3>
+          <ul class="programmes-list">
+            <li>parler en public et gérer le stress</li>
+            <li>optimiser leur image et leur gestuelle</li>
+            <li>améliorer leur expression</li>
+          </ul>
+        </div>
+        <div class="programmes-panel" id="panel-collectivites" role="tabpanel" aria-labelledby="tab-collectivites" data-cta="Choisissez votre atelier." hidden>
+          <h3 class="programmes-title">Programmes sur mesure pour vos publics :</h3>
+          <ul class="programmes-list">
+            <li>parler en public et gérer le stress</li>
+            <li>optimiser leur image et leur gestuelle</li>
+            <li>améliorer leur expression</li>
+          </ul>
+        </div>
+        <p class="programmes-cta" id="programmesCta">Choisis ton atelier.</p>
       </div>
       <div class="ateliers-grid">
 
@@ -1856,7 +1977,6 @@
         if (ytPlayer && ytReady) ytPlayer.pauseVideo();
         musicPlaying = false;
         stopEqualizer();
-        document.getElementById('musicHint').innerHTML = '▶ Cliquez pour écouter';
       }
       // Stopper les vidéos ateliers
       if (videoPlayer1) try { videoPlayer1.pauseVideo(); } catch(e) {}
@@ -1897,7 +2017,6 @@
                 ytPlayer.pauseVideo();
                 musicPlaying = false;
                 stopEqualizer();
-                document.getElementById('musicHint').innerHTML = '▶ Cliquez pour écouter';
               }
               if (videoPlayer2) try { videoPlayer2.pauseVideo(); } catch(err) {}
             }
@@ -1913,7 +2032,6 @@
                 ytPlayer.pauseVideo();
                 musicPlaying = false;
                 stopEqualizer();
-                document.getElementById('musicHint').innerHTML = '▶ Cliquez pour écouter';
               }
               if (videoPlayer1) try { videoPlayer1.pauseVideo(); } catch(err) {}
             }
@@ -1923,10 +2041,7 @@
     };
 
     function toggleMusic() {
-      const hint = document.getElementById('musicHint');
-
       if (!ytReady) {
-        hint.innerHTML = 'Chargement...';
         setTimeout(toggleMusic, 500);
         return;
       }
@@ -1935,7 +2050,6 @@
         ytPlayer.pauseVideo();
         musicPlaying = false;
         stopEqualizer();
-        hint.innerHTML = '▶ Cliquez pour écouter';
       } else {
         // Stopper les vidéos ateliers d'abord
         if (videoPlayer1) try { videoPlayer1.pauseVideo(); } catch(e) {}
@@ -1943,7 +2057,6 @@
         ytPlayer.playVideo();
         musicPlaying = true;
         startEqualizer();
-        hint.innerHTML = '■ Cliquez pour arrêter';
       }
     }
 
@@ -2102,6 +2215,32 @@
         }
       });
     }
+
+    // ============================================
+    // ONGLETS PROGRAMMES (Particulier / Professionnels / Collectivités)
+    // ============================================
+    const programmesTabs = [...document.querySelectorAll('.programmes-tab')];
+    function selectProgrammesTab(tab) {
+      programmesTabs.forEach(t => {
+        const selected = t === tab;
+        t.setAttribute('aria-selected', selected);
+        t.tabIndex = selected ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls'));
+        panel.hidden = !selected;
+        if (selected) document.getElementById('programmesCta').textContent = panel.dataset.cta;
+      });
+    }
+    programmesTabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => selectProgrammesTab(tab));
+      tab.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        const step = e.key === 'ArrowRight' ? 1 : -1;
+        const next = programmesTabs[(i + step + programmesTabs.length) % programmesTabs.length];
+        selectProgrammesTab(next);
+        next.focus();
+      });
+    });
 
     // ============================================
     // ANIMATIONS AU SCROLL (IntersectionObserver)
