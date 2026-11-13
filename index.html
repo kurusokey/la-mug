@@ -650,6 +650,26 @@
       letter-spacing: 0.5px;
     }
 
+    /* CHAMBRES */
+    #chambres { background: var(--dark); scroll-margin-top: 80px; }
+    .chambres-header { max-width: 720px; margin-bottom: 48px; }
+    .chambres-link { color: var(--yellow); text-decoration: underline; text-underline-offset: 3px; }
+    .chambres-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .chambre-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 36px; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s;
+    }
+    .chambre-card:hover { border-color: rgba(200,160,80,0.3); transform: translateY(-4px); }
+    .chambre-num { font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 2px; color: var(--yellow); opacity: 0.7; margin-bottom: 8px; }
+    .chambre-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; line-height: 1.1; margin-bottom: 16px; }
+    .chambre-accroche { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.6; margin-bottom: 12px; }
+    .chambre-desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+    .chambre-key {
+      margin-top: auto; padding-top: 24px; font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px; font-weight: 700; letter-spacing: 1px; line-height: 1.1; color: var(--yellow);
+    }
+    @media (max-width: 900px) { .chambres-grid { grid-template-columns: 1fr; } }
+
     /* PUBLICS */
     #publics { background: var(--dark); }
 
@@ -1267,7 +1287,7 @@
     <a href="index.html" class="nav-logo">LA <span>M.U.G</span></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">Notre mission</a></li>
-      <li><a href="#ateliers">Ateliers</a></li>
+      <li><a href="#chambres">Programmes</a></li>
       <li><a href="#videos">Nos ateliers en vidéo</a></li>
       <li><a href="#photos">Nos ateliers en photo</a></li>
       <li><a href="#artistes">Artistes</a></li>
@@ -1333,30 +1353,7 @@
     <!-- Boutons -->
     <div style="position:relative; z-index:2; margin-top:40px; display:flex; flex-wrap:wrap; gap:16px; justify-content:center; animation:fadeInUp 2.1s ease-out;">
       <a href="#contact" class="btn-primary" style="padding:16px 36px; font-size:15px;">Demander un devis</a>
-      <a href="#ateliers" class="btn-secondary" style="padding:16px 36px; font-size:15px;">Découvrir les ateliers</a>
-    </div>
-
-    <!-- Stats en bas du hero -->
-    <div class="hero-stats-bar" style="position:relative; z-index:2; margin-top:60px; display:flex; flex-wrap:wrap; gap:32px; justify-content:center; animation:fadeInUp 2.4s ease-out;">
-      <div class="hero-stat-item" style="text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; color:#C8A050;">25+</div>
-        <div style="font-size:12px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:1px;">Années d'expertise</div>
-      </div>
-      <div class="hero-stat-sep" style="width:1px; background:rgba(200,160,80,0.15); align-self:stretch;"></div>
-      <div class="hero-stat-item" style="text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; color:#C8A050;">4</div>
-        <div style="font-size:12px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:1px;">Ateliers</div>
-      </div>
-      <div class="hero-stat-sep" style="width:1px; background:rgba(200,160,80,0.15); align-self:stretch;"></div>
-      <div class="hero-stat-item" style="text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; color:#C8A050;">12</div>
-        <div style="font-size:12px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:1px;">Personnes max.</div>
-      </div>
-      <div class="hero-stat-sep" style="width:1px; background:rgba(200,160,80,0.15); align-self:stretch;"></div>
-      <div class="hero-stat-item" style="text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; color:#C8A050;">8+</div>
-        <div style="font-size:12px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:1px;">Collectivités partenaires</div>
-      </div>
+      <a href="#chambres" class="btn-secondary" style="padding:16px 36px; font-size:15px;">Découvrir les programmes</a>
     </div>
 
     <!-- Scroll indicator -->
@@ -1378,11 +1375,9 @@
             La M.U.G est un espace de création, de formation et de développement humain ancré dans la culture hip-hop. Nous croyons que le rap — art de la parole, du rythme et de l'authenticité — est un vecteur unique de transformation personnelle et collective.
           </p>
           <ul class="about-list">
-            <li>Ateliers sur-mesure adaptés à vos objectifs</li>
-            <li>Animateur professionnel avec 25 ans d'expérience</li>
-            <li>Approche pédagogique bienveillante et inclusive</li>
-            <li>Format court et intense : 2h pour des résultats concrets</li>
-            <li>Interventions en Île-de-France et toute la France</li>
+            <li>Expérience hip-hop sur mesure</li>
+            <li>25 ans d'expérience artistique rap</li>
+            <li>Interventions sur toute la France</li>
           </ul>
           <div class="about-badges" style="margin-top:32px;">
             <span class="badge">Cohésion d'équipe</span>
@@ -1410,18 +1405,43 @@
     </div>
   </section>
 
-  <!-- ATELIERS -->
-  <section id="ateliers">
+  <!-- 3 CHAMBRES 3 PROGRAMMES -->
+  <section id="chambres">
     <div class="container">
-      <div class="ateliers-header">
-        <div>
-          <span class="section-tag">● Nos ateliers</span>
-          <h2 class="section-title">3 <span>formats</span> pour<br>tous les besoins</h2>
-        </div>
-        <p class="section-desc">Chaque atelier est conçu pour 12 participants maximum, en séances de 2 heures. Ils peuvent être combinés et adaptés à vos objectifs spécifiques.</p>
+      <div class="chambres-header">
+        <span class="section-tag">● Nos programmes</span>
+        <h2 class="section-title">3 <span>chambres</span>, 3 programmes</h2>
+        <p class="section-desc">Choisis ton programme ou <a href="#contact" class="chambres-link">contacte-nous pour du sur mesure</a>.</p>
       </div>
-      <div class="programmes">
-        <div class="programmes-panel" id="panel-particulier" role="tabpanel" aria-labelledby="tab-particulier" data-cta="Choisis ton atelier.">
+      <div class="chambres-grid">
+
+        <article class="chambre-card">
+          <div class="chambre-num">Chambre 1</div>
+          <h3 class="chambre-name">Rap et créativité</h3>
+          <p class="chambre-accroche">Vis cette expérience de rappeur et goûte au plaisir artistique de créer seul ou en groupe.</p>
+          <p class="chambre-desc">La M.U.G t'accompagne sur toutes les étapes de création d'un morceau de rap, entre écriture et composition musicale, une immersion dans l'univers artistique hip-hop.</p>
+          <div class="chambre-key">Écriture et composition musicale</div>
+        </article>
+
+        <article class="chambre-card">
+          <div class="chambre-num">Chambre 2</div>
+          <h3 class="chambre-name">Performance en public</h3>
+          <p class="chambre-accroche">Retrouve ta confiance en toi au milieu de la foule pour scander tes meilleures rimes.</p>
+          <p class="chambre-desc">Avec les techniques de la M.U.G, réussis ton freestyle ou ton battle, un baptême du feu qui boostera tes prochaines interventions en public.</p>
+          <div class="chambre-key">Freestyle ou battle</div>
+        </article>
+
+        <article class="chambre-card">
+          <div class="chambre-num">Chambre 3</div>
+          <h3 class="chambre-name">Boost ton image</h3>
+          <p class="chambre-accroche">Maîtrise ton image et développe ton écoute en réalisant ton propre clip ou ton podcast.</p>
+          <p class="chambre-desc">Avec les conseils de la M.U.G, apprends à enrichir ton profil et à comprendre l'image que tu renvoies lors de tes prochaines négociations.</p>
+          <div class="chambre-key">Clip et podcast</div>
+        </article>
+
+      </div>
+      <div class="programmes" style="margin-top:48px;">
+        <div class="programmes-panel" id="panel-particulier" role="tabpanel" aria-labelledby="tab-particulier" data-cta="Choisis ton programme.">
           <h3 class="programmes-title">Programmes sur mesure pour :</h3>
           <ul class="programmes-list">
             <li>Parler en public et gérer le stress</li>
@@ -1429,7 +1449,7 @@
             <li>Améliorer ton expression</li>
           </ul>
         </div>
-        <div class="programmes-panel" id="panel-professionnels" role="tabpanel" aria-labelledby="tab-professionnels" data-cta="Choisissez votre atelier." hidden>
+        <div class="programmes-panel" id="panel-professionnels" role="tabpanel" aria-labelledby="tab-professionnels" data-cta="Choisissez votre programme." hidden>
           <h3 class="programmes-title">Programmes sur mesure pour vos équipes :</h3>
           <ul class="programmes-list">
             <li>Parler en public et gérer le stress</li>
@@ -1437,7 +1457,7 @@
             <li>Améliorer leur expression</li>
           </ul>
         </div>
-        <div class="programmes-panel" id="panel-collectivites" role="tabpanel" aria-labelledby="tab-collectivites" data-cta="Choisissez votre atelier." hidden>
+        <div class="programmes-panel" id="panel-collectivites" role="tabpanel" aria-labelledby="tab-collectivites" data-cta="Choisissez votre programme." hidden>
           <h3 class="programmes-title">Programmes sur mesure pour vos publics :</h3>
           <ul class="programmes-list">
             <li>Parler en public et gérer le stress</li>
@@ -1445,51 +1465,8 @@
             <li>Améliorer leur expression</li>
           </ul>
         </div>
-        <p class="programmes-cta" id="programmesCta">Choisis ton atelier.</p>
+        <p class="programmes-cta" id="programmesCta">Choisis ton programme.</p>
         <p class="programmes-offre">La première heure est offerte.</p>
-      </div>
-      <div class="ateliers-grid">
-
-        <div class="atelier-card">
-          <div class="atelier-icon">🎤</div>
-          <div class="atelier-num">ATELIER 01</div>
-          <div class="atelier-name">Rap &<br>Enregistrement</div>
-          <p class="atelier-desc">
-            De la page blanche au titre enregistré. Vos équipes écrivent, interprètent et produisent un morceau de rap en studio, développant écriture, concentration et fierté collective.
-          </p>
-          <div class="atelier-format">⏱ 2h · 12 personnes max</div>
-        </div>
-
-        <div class="atelier-card">
-          <div class="atelier-icon">⚡</div>
-          <div class="atelier-num">ATELIER 02</div>
-          <div class="atelier-name">Battle &<br>Clash Rap A Capella</div>
-          <p class="atelier-desc">
-            L'art du clash revisité dans un cadre bienveillant et ludique. Improvisation, répartie, prise de parole spontanée : une parenthèse décomplexée qui libère les énergies.
-          </p>
-          <div class="atelier-format">⏱ 2h · 12 personnes max</div>
-        </div>
-
-        <div class="atelier-card">
-          <div class="atelier-icon">🎬</div>
-          <div class="atelier-num">ATELIER 03</div>
-          <div class="atelier-name">Clip Vidéo Rap</div>
-          <p class="atelier-desc">
-            Conception, tournage et montage d'un clip en une session. Créativité visuelle, collaboration et storytelling au programme pour un résultat que tout le groupe gardera en mémoire.
-          </p>
-          <div class="atelier-format">⏱ 2h · 12 personnes max</div>
-        </div>
-
-        <div class="atelier-card">
-          <div class="atelier-icon">💬</div>
-          <div class="atelier-num">ATELIER 04</div>
-          <div class="atelier-name">Débats Sociaux<br>& Podcasts</div>
-          <p class="atelier-desc">
-            Prendre la parole, argumenter, écouter l'autre. Un format podcast ancré dans l'actualité sociale et culturelle, pour stimuler l'esprit critique et le dialogue constructif.
-          </p>
-          <div class="atelier-format">⏱ 2h · 12 personnes max</div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -1895,7 +1872,7 @@
       </div>
       <ul class="footer-links">
         <li><a href="#about">Mission</a></li>
-        <li><a href="#ateliers">Ateliers</a></li>
+        <li><a href="#chambres">Programmes</a></li>
         <li><a href="#artistes">Artistes</a></li>
         <li><a href="booking.html">Booking</a></li>
         <li><a href="epk.html">EPK</a></li>
