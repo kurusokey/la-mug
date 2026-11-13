@@ -64,15 +64,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --yellow: #C8A050;     /* was #F5C800 — now warm gold */
-      --magenta: #8B6914;    /* was #CC1677 — now warm brown */
-      --black: #0A0A0A;
-      --dark: #111111;
-      --card: #191919;
-      --border: #2a2a2a;
+      --yellow: #FDB927;     /* was #FDB927 — now warm gold */
+      --magenta: #8A4FD8;    /* was #8A4FD8 — now warm brown */
+      --black: #0D0718;
+      --dark: #150C24;
+      --card: #1E1333;
+      --border: #33244D;
       --white: #FFFFFF;
       --gray: #888888;
-      --light: #F5E6C8;      /* was #f0f0f0 — now off-white/parchment */
+      --light: #FFFFFF;      
     }
 
     html {
@@ -106,7 +106,7 @@
       position: fixed;
       top: 28px; left: 0; right: 0;
       z-index: 100;
-      background: rgba(10,10,10,0.92);
+      background: rgba(13,7,24,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 24px;
@@ -190,7 +190,7 @@
       position: absolute;
       top: -200px; right: -200px;
       width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(200,160,80,0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(253,185,39,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -199,7 +199,7 @@
       position: absolute;
       bottom: -200px; left: -200px;
       width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(139,105,20,0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(138,79,216,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -272,7 +272,7 @@
       transition: all 0.2s;
     }
 
-    .btn-primary:hover { background: #D4AD5A; transform: translateY(-1px); }
+    .btn-primary:hover { background: #FFC94D; transform: translateY(-1px); }
 
     .btn-secondary {
       display: inline-flex;
@@ -289,7 +289,7 @@
       transition: all 0.2s;
     }
 
-    .btn-secondary:hover { border-color: var(--white); }
+    .btn-secondary:hover { border-color: #8A4FD8; background: #552583; }
 
     .hero-stats {
       display: grid;
@@ -428,8 +428,8 @@
     }
 
     .badge {
-      background: rgba(200,160,80,0.1);
-      border: 1px solid rgba(200,160,80,0.25);
+      background: rgba(253,185,39,0.1);
+      border: 1px solid rgba(253,185,39,0.25);
       color: var(--yellow);
       font-size: 12px;
       font-weight: 600;
@@ -507,7 +507,7 @@
       transition: border-color 0.3s, background 0.3s, color 0.3s;
     }
 
-    .programmes-tab:hover { border-color: rgba(200,160,80,0.3); }
+    .programmes-tab:hover { border-color: rgba(253,185,39,0.3); }
 
     .programmes-tab[aria-selected="true"] {
       background: var(--yellow);
@@ -601,14 +601,14 @@
       transition: transform 0.3s;
     }
 
-    .atelier-card:hover { border-color: rgba(200,160,80,0.3); transform: translateY(-4px); }
+    .atelier-card:hover { border-color: rgba(253,185,39,0.3); transform: translateY(-4px); }
     .atelier-card:hover::after { transform: scaleX(1); }
 
     .atelier-icon {
       width: 56px;
       height: 56px;
       border-radius: 12px;
-      background: rgba(200,160,80,0.12);
+      background: rgba(253,185,39,0.12);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -651,15 +651,20 @@
     }
 
     /* CHAMBRES */
-    #chambres { background: var(--dark); scroll-margin-top: 80px; }
+    #chambres { background: linear-gradient(160deg, #2A1150 0%, #1A0B33 55%, #120824 100%); scroll-margin-top: 80px; }
     .chambres-header { max-width: 720px; margin-bottom: 48px; }
     .chambres-link { color: var(--yellow); text-decoration: underline; text-underline-offset: 3px; }
     .chambres-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .chambre-card {
       background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 36px; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s;
+      padding: 36px; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative; overflow: hidden; background: rgba(13,7,24,0.55);
     }
-    .chambre-card:hover { border-color: rgba(200,160,80,0.3); transform: translateY(-4px); }
+    .chambre-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--yellow), #8A4FD8);
+    }
+    .chambre-card:hover { border-color: rgba(253,185,39,0.45); transform: translateY(-6px); box-shadow: 0 18px 40px rgba(85,37,131,0.45); }
     .chambre-num { font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 2px; color: var(--yellow); opacity: 0.7; margin-bottom: 8px; }
     .chambre-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; line-height: 1.1; margin-bottom: 16px; }
     .chambre-accroche { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.6; margin-bottom: 12px; }
@@ -689,7 +694,7 @@
       transition: border-color 0.2s;
     }
 
-    .public-card:hover { border-color: rgba(139,105,20,0.4); }
+    .public-card:hover { border-color: rgba(138,79,216,0.4); }
 
     .public-icon {
       font-size: 40px;
@@ -735,7 +740,7 @@
     }
 
     .client-badge:hover {
-      border-color: rgba(200,160,80,0.35);
+      border-color: rgba(253,185,39,0.35);
       color: var(--white);
     }
 
@@ -775,7 +780,7 @@
       height: 44px;
       min-width: 44px;
       border-radius: 10px;
-      background: rgba(200,160,80,0.12);
+      background: rgba(253,185,39,0.12);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -864,12 +869,12 @@
       margin-top: 8px;
     }
 
-    .btn-submit:hover { background: #D4AD5A; transform: translateY(-1px); }
+    .btn-submit:hover { background: #FFC94D; transform: translateY(-1px); }
 
     /* FOOTER */
     footer {
       background: var(--black);
-      border-top: 2px solid #C8A050;
+      border-top: 2px solid #FDB927;
       padding: 48px 24px;
     }
 
@@ -914,8 +919,8 @@
     /* SUCCESS MESSAGE */
     .form-success {
       display: none;
-      background: rgba(200,160,80,0.1);
-      border: 1px solid rgba(200,160,80,0.3);
+      background: rgba(253,185,39,0.1);
+      border: 1px solid rgba(253,185,39,0.3);
       border-radius: 8px;
       padding: 20px;
       text-align: center;
@@ -949,13 +954,13 @@
         flex-direction: column;
         position: fixed;
         top: 92px; left: 0; right: 0;
-        background: rgba(10,10,10,0.98);
+        background: rgba(13,7,24,0.98);
         backdrop-filter: blur(12px);
         padding: 16px 24px 20px;
         gap: 0;
         align-items: stretch;
         z-index: 999;
-        border-bottom: 1px solid rgba(200,160,80,0.1);
+        border-bottom: 1px solid rgba(253,185,39,0.1);
         max-height: calc(100vh - 92px);
         overflow-y: auto;
       }
@@ -1024,8 +1029,8 @@
         display: none;
       }
       .hero-stat-item {
-        background: rgba(200,160,80,0.04);
-        border: 1px solid rgba(200,160,80,0.1);
+        background: rgba(253,185,39,0.04);
+        border: 1px solid rgba(253,185,39,0.1);
         border-radius: 8px;
         padding: 16px 12px;
       }
@@ -1181,7 +1186,7 @@
       top: 0; left: 0; right: 0;
       z-index: 101;
       height: 28px;
-      background: #050505;
+      background: #07030E;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1190,7 +1195,7 @@
       font-family: 'Inter', sans-serif;
       text-transform: uppercase;
       letter-spacing: 2px;
-      border-bottom: 2px solid #C8A050;
+      border-bottom: 2px solid #FDB927;
     }
 
     .topbar a {
@@ -1216,7 +1221,7 @@
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: #C8A050; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: #FDB927; border-radius: 3px; }
 
     /* ============================================
        ANIMATIONS HIP-HOP 90s
@@ -1236,8 +1241,8 @@
 
     /* Logo glow pulse */
     @keyframes glowPulse {
-      0%, 100% { filter: drop-shadow(0 0 30px rgba(200,160,80,0.1)); }
-      50% { filter: drop-shadow(0 0 50px rgba(200,160,80,0.25)); }
+      0%, 100% { filter: drop-shadow(0 0 30px rgba(253,185,39,0.1)); }
+      50% { filter: drop-shadow(0 0 50px rgba(253,185,39,0.25)); }
     }
 
     /* Scroll dot */
@@ -1309,18 +1314,19 @@
     <!-- Fond animé : lignes de scratch vinyle -->
     <div class="hero-bg-animated" style="position:absolute; inset:0; overflow:hidden; pointer-events:none;">
       <!-- Cercles concentriques (vinyle) -->
-      <div class="hero-circle hero-circle-outer" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:900px; height:900px; border-radius:50%; border:1px solid rgba(200,160,80,0.04); animation:spinSlow 60s linear infinite; will-change:transform;"></div>
-      <div class="hero-circle" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:700px; height:700px; border-radius:50%; border:1px solid rgba(200,160,80,0.05); animation:spinSlow 45s linear infinite reverse; will-change:transform;"></div>
-      <div class="hero-circle" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:500px; height:500px; border-radius:50%; border:1px solid rgba(200,160,80,0.06); animation:spinSlow 30s linear infinite; will-change:transform;"></div>
-      <div class="hero-circle hero-circle-inner" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:300px; height:300px; border-radius:50%; border:1px solid rgba(200,160,80,0.07); animation:spinSlow 20s linear infinite reverse; will-change:transform;"></div>
+      <div class="hero-circle hero-circle-outer" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:900px; height:900px; border-radius:50%; border:1px solid rgba(253,185,39,0.04); animation:spinSlow 60s linear infinite; will-change:transform;"></div>
+      <div class="hero-circle" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:700px; height:700px; border-radius:50%; border:1px solid rgba(253,185,39,0.05); animation:spinSlow 45s linear infinite reverse; will-change:transform;"></div>
+      <div class="hero-circle" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:500px; height:500px; border-radius:50%; border:1px solid rgba(253,185,39,0.06); animation:spinSlow 30s linear infinite; will-change:transform;"></div>
+      <div class="hero-circle hero-circle-inner" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:300px; height:300px; border-radius:50%; border:1px solid rgba(253,185,39,0.07); animation:spinSlow 20s linear infinite reverse; will-change:transform;"></div>
       <!-- Lueurs -->
-      <div style="position:absolute; top:-10%; right:-10%; width:500px; height:500px; background:radial-gradient(circle, rgba(200,160,80,0.06) 0%, transparent 70%);"></div>
-      <div style="position:absolute; bottom:-10%; left:-10%; width:500px; height:500px; background:radial-gradient(circle, rgba(139,105,20,0.05) 0%, transparent 70%);"></div>
+      <div style="position:absolute; top:-15%; right:-10%; width:640px; height:640px; background:radial-gradient(circle, rgba(85,37,131,0.45) 0%, transparent 70%);"></div>
+      <div style="position:absolute; top:30%; right:20%; width:360px; height:360px; background:radial-gradient(circle, rgba(253,185,39,0.07) 0%, transparent 70%);"></div>
+      <div style="position:absolute; bottom:-15%; left:-10%; width:640px; height:640px; background:radial-gradient(circle, rgba(85,37,131,0.35) 0%, transparent 70%);"></div>
     </div>
 
     <!-- Logo MUG animé -->
     <div style="position:relative; z-index:2; animation:fadeInUp 1.2s ease-out;">
-      <img class="hero-logo" src="logo-la-mug-white.png" alt="La M.U.G" style="height:120px; width:auto; opacity:0.9; filter:drop-shadow(0 0 40px rgba(200,160,80,0.15)); animation:glowPulse 4s ease-in-out infinite;" />
+      <img class="hero-logo" src="logo-la-mug-white.png" alt="La M.U.G" style="height:120px; width:auto; opacity:0.9; filter:drop-shadow(0 0 40px rgba(253,185,39,0.15)); animation:glowPulse 4s ease-in-out infinite;" />
     </div>
 
     <!-- Onglets publics -->
@@ -1332,13 +1338,13 @@
 
     <!-- Texte principal -->
     <div style="position:relative; z-index:2; margin-top:40px; animation:fadeInUp 1.5s ease-out;">
-      <p style="font-size:12px; text-transform:uppercase; letter-spacing:6px; color:#C8A050; opacity:0.6;">La Maison Urbaine Générale</p>
-      <h1 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(42px, 8vw, 80px); line-height:1; margin-top:16px; color:white; text-shadow:0 2px 30px rgba(200,160,80,0.15);">
-        L'art du <span style="color:#C8A050;">rap</span><br>
+      <p style="font-size:12px; text-transform:uppercase; letter-spacing:6px; color:#FDB927; opacity:0.6;">La Maison Urbaine Générale</p>
+      <h1 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(42px, 8vw, 80px); line-height:1; margin-top:16px; color:white; text-shadow:0 2px 30px rgba(253,185,39,0.15);">
+        L'art du <span style="color:#FDB927;">rap</span><br>
         au service de<br>
-        <span style="color:#C8A050; position:relative; display:inline-block;">
+        <span style="color:#FDB927; position:relative; display:inline-block;">
           votre développement personnel
-          <span style="position:absolute; bottom:-4px; left:0; right:0; height:3px; background:linear-gradient(90deg, transparent, #C8A050, transparent);"></span>
+          <span style="position:absolute; bottom:-4px; left:0; right:0; height:3px; background:linear-gradient(90deg, transparent, #FDB927, transparent);"></span>
         </span>
       </h1>
     </div>
@@ -1358,8 +1364,8 @@
 
     <!-- Scroll indicator -->
     <div class="hero-scroll-indicator" style="position:absolute; bottom:24px; left:50%; transform:translateX(-50%); z-index:2; animation:bounce 2s infinite;">
-      <div style="width:24px; height:40px; border:2px solid rgba(200,160,80,0.2); border-radius:12px; display:flex; justify-content:center; padding-top:6px;">
-        <div style="width:3px; height:8px; background:#C8A050; border-radius:2px; animation:scrollDot 2s infinite;"></div>
+      <div style="width:24px; height:40px; border:2px solid rgba(253,185,39,0.2); border-radius:12px; display:flex; justify-content:center; padding-top:6px;">
+        <div style="width:3px; height:8px; background:#FDB927; border-radius:2px; animation:scrollDot 2s infinite;"></div>
       </div>
     </div>
   </section>
@@ -1526,56 +1532,56 @@
     <div style="position:relative; overflow:hidden;">
       <!-- Bande défilante -->
       <div id="photoCarousel" style="display:flex; gap:12px; overflow-x:auto; scroll-behavior:smooth; padding:0 24px 16px; -webkit-overflow-scrolling:touch; scrollbar-width:none; -ms-overflow-style:none;">
-        <div class="photo-card" onclick="openLightbox(0)" style="flex:0 0 280px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(0)" style="flex:0 0 280px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-001.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(1)" style="flex:0 0 220px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(1)" style="flex:0 0 220px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-002.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(2)" style="flex:0 0 300px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(2)" style="flex:0 0 300px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-003.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(3)" style="flex:0 0 240px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(3)" style="flex:0 0 240px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-004.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(4)" style="flex:0 0 260px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(4)" style="flex:0 0 260px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-005.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(5)" style="flex:0 0 280px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(5)" style="flex:0 0 280px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-007.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(6)" style="flex:0 0 230px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(6)" style="flex:0 0 230px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-008.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(7)" style="flex:0 0 270px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(7)" style="flex:0 0 270px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-009.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(8)" style="flex:0 0 250px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(8)" style="flex:0 0 250px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-0010.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(9)" style="flex:0 0 290px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(9)" style="flex:0 0 290px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-0011.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(10)" style="flex:0 0 240px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(10)" style="flex:0 0 240px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-00115.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(11)" style="flex:0 0 260px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(11)" style="flex:0 0 260px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-0012.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(12)" style="flex:0 0 220px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(12)" style="flex:0 0 220px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-0013.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
-        <div class="photo-card" onclick="openLightbox(13)" style="flex:0 0 280px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(200,160,80,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(200,160,80,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(200,160,80,0.1)'">
+        <div class="photo-card" onclick="openLightbox(13)" style="flex:0 0 280px; height:360px; border-radius:12px; overflow:hidden; cursor:pointer; position:relative; border:1px solid rgba(253,185,39,0.1); transition:transform 0.3s, border-color 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.borderColor='rgba(253,185,39,0.3)'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(253,185,39,0.1)'">
           <img src="atelier/img-atelier-0014.jpeg" alt="Atelier La M.U.G" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
         </div>
       </div>
 
       <!-- Boutons navigation -->
       <div style="display:flex; justify-content:center; gap:12px; margin-top:20px;">
-        <button onclick="document.getElementById('photoCarousel').scrollBy({left:-300,behavior:'smooth'})" style="width:40px; height:40px; border-radius:50%; border:1px solid rgba(200,160,80,0.2); background:rgba(10,10,10,0.8); color:#C8A050; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(200,160,80,0.5)'" onmouseout="this.style.borderColor='rgba(200,160,80,0.2)'">
+        <button onclick="document.getElementById('photoCarousel').scrollBy({left:-300,behavior:'smooth'})" style="width:40px; height:40px; border-radius:50%; border:1px solid rgba(253,185,39,0.2); background:rgba(13,7,24,0.8); color:#FDB927; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(253,185,39,0.5)'" onmouseout="this.style.borderColor='rgba(253,185,39,0.2)'">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;"><path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" /></svg>
         </button>
-        <button onclick="document.getElementById('photoCarousel').scrollBy({left:300,behavior:'smooth'})" style="width:40px; height:40px; border-radius:50%; border:1px solid rgba(200,160,80,0.2); background:rgba(10,10,10,0.8); color:#C8A050; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(200,160,80,0.5)'" onmouseout="this.style.borderColor='rgba(200,160,80,0.2)'">
+        <button onclick="document.getElementById('photoCarousel').scrollBy({left:300,behavior:'smooth'})" style="width:40px; height:40px; border-radius:50%; border:1px solid rgba(253,185,39,0.2); background:rgba(13,7,24,0.8); color:#FDB927; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(253,185,39,0.5)'" onmouseout="this.style.borderColor='rgba(253,185,39,0.2)'">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;"><path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
         </button>
       </div>
@@ -1583,15 +1589,15 @@
 
     <!-- Lightbox -->
     <div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,0.95); backdrop-filter:blur(12px); cursor:pointer; align-items:center; justify-content:center;">
-      <button onclick="event.stopPropagation(); navigateLightbox(-1)" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:1px solid rgba(200,160,80,0.3); background:rgba(0,0,0,0.5); color:#C8A050; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10001;">
+      <button onclick="event.stopPropagation(); navigateLightbox(-1)" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:1px solid rgba(253,185,39,0.3); background:rgba(0,0,0,0.5); color:#FDB927; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10001;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:20px;height:20px;"><path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" /></svg>
       </button>
       <img id="lightboxImg" src="" alt="" style="max-width:90vw; max-height:90vh; object-fit:contain; border-radius:8px; pointer-events:none;">
-      <button onclick="event.stopPropagation(); navigateLightbox(1)" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:1px solid rgba(200,160,80,0.3); background:rgba(0,0,0,0.5); color:#C8A050; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10001;">
+      <button onclick="event.stopPropagation(); navigateLightbox(1)" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:1px solid rgba(253,185,39,0.3); background:rgba(0,0,0,0.5); color:#FDB927; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10001;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:20px;height:20px;"><path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
       </button>
-      <button onclick="closeLightbox()" style="position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:50%; border:1px solid rgba(200,160,80,0.3); background:rgba(0,0,0,0.5); color:#C8A050; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10001; font-size:20px;">✕</button>
-      <div id="lightboxCounter" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); color:rgba(200,160,80,0.5); font-size:13px; letter-spacing:2px;"></div>
+      <button onclick="closeLightbox()" style="position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:50%; border:1px solid rgba(253,185,39,0.3); background:rgba(0,0,0,0.5); color:#FDB927; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10001; font-size:20px;">✕</button>
+      <div id="lightboxCounter" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); color:rgba(253,185,39,0.5); font-size:13px; letter-spacing:2px;"></div>
     </div>
   </section>
 
@@ -1748,10 +1754,10 @@
         <form action="https://formspree.io/f/xyknzaad" method="POST" id="newsletterForm" style="display:flex; gap:12px; max-width:440px; margin:0 auto;">
           <input type="hidden" name="_subject" value="Inscription newsletter — La M.U.G">
           <input type="email" name="email" required placeholder="Votre adresse email" style="flex:1; background:var(--black); border:1px solid var(--border); border-radius:6px; padding:12px 16px; color:var(--white); font-family:'Inter',sans-serif; font-size:15px; outline:none;">
-          <button type="submit" style="background:var(--yellow); color:var(--black); border:none; border-radius:6px; padding:12px 20px; font-family:'Inter',sans-serif; font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; white-space:nowrap;" onmouseover="this.style.background='#D4AD5A'" onmouseout="this.style.background='#C8A050'">S'inscrire</button>
+          <button type="submit" style="background:var(--yellow); color:var(--black); border:none; border-radius:6px; padding:12px 20px; font-family:'Inter',sans-serif; font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; white-space:nowrap;" onmouseover="this.style.background='#FFC94D'" onmouseout="this.style.background='#FDB927'">S'inscrire</button>
         </form>
         <div id="newsletterSuccess" style="display:none; margin-top:16px; font-size:14px; color:var(--yellow); font-weight:600;">✓ Inscription confirmée !</div>
-        <p style="font-size:11px; color:rgba(255,255,255,0.25); margin-top:16px;">En vous inscrivant, vous acceptez notre <a href="mentions-legales.html" style="color:rgba(200,160,80,0.5);">politique de confidentialité</a>.</p>
+        <p style="font-size:11px; color:rgba(255,255,255,0.25); margin-top:16px;">En vous inscrivant, vous acceptez notre <a href="mentions-legales.html" style="color:rgba(253,185,39,0.5);">politique de confidentialité</a>.</p>
       </div>
     </div>
   </section>
@@ -1767,11 +1773,11 @@
           Concert, showcase, animation, masterclass, écriture sur mesure — La M.U.G met ses artistes à disposition pour donner une dimension unique à vos événements.
         </p>
         <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:32px;">
-          <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 14px; border-radius:100px;">Concerts</span>
-          <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 14px; border-radius:100px;">Festivals</span>
-          <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 14px; border-radius:100px;">Corporate</span>
-          <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 14px; border-radius:100px;">Mariages</span>
-          <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 14px; border-radius:100px;">Masterclass</span>
+          <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 14px; border-radius:100px;">Concerts</span>
+          <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 14px; border-radius:100px;">Festivals</span>
+          <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 14px; border-radius:100px;">Corporate</span>
+          <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 14px; border-radius:100px;">Mariages</span>
+          <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 14px; border-radius:100px;">Masterclass</span>
         </div>
         <div style="margin-top:36px;">
           <a href="booking.html" class="btn-primary" style="padding:16px 36px; font-size:15px;">Faire une demande de booking →</a>
@@ -1886,13 +1892,13 @@
         © 2026 La Maison Urbaine Générale<br>
         <span style="font-size:12px;">20 rue Roger Salengro, 93140 Bondy</span>
         <div style="display:flex; gap:16px; margin-top:12px; justify-content:flex-end;">
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#C8A050'" onmouseout="this.style.color='#888'">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#FDB927'" onmouseout="this.style.color='#888'">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" title="YouTube" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#C8A050'" onmouseout="this.style.color='#888'">
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" title="YouTube" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#FDB927'" onmouseout="this.style.color='#888'">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.46z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
           </a>
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#C8A050'" onmouseout="this.style.color='#888'">
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#FDB927'" onmouseout="this.style.color='#888'">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
         </div>
@@ -1902,7 +1908,7 @@
   </footer>
 
   <!-- Bouton retour en haut -->
-  <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed; bottom:24px; right:24px; z-index:98; width:44px; height:44px; border-radius:50%; border:1px solid rgba(200,160,80,0.2); background:rgba(10,10,10,0.9); backdrop-filter:blur(8px); cursor:pointer; display:none; align-items:center; justify-content:center; transition:all 0.3s; color:#C8A050;" onmouseover="this.style.background='rgba(200,160,80,0.15)';this.style.borderColor='rgba(200,160,80,0.4)'" onmouseout="this.style.background='rgba(10,10,10,0.9)';this.style.borderColor='rgba(200,160,80,0.2)'">
+  <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed; bottom:24px; right:24px; z-index:98; width:44px; height:44px; border-radius:50%; border:1px solid rgba(253,185,39,0.2); background:rgba(13,7,24,0.9); backdrop-filter:blur(8px); cursor:pointer; display:none; align-items:center; justify-content:center; transition:all 0.3s; color:#FDB927;" onmouseover="this.style.background='rgba(253,185,39,0.15)';this.style.borderColor='rgba(253,185,39,0.4)'" onmouseout="this.style.background='rgba(13,7,24,0.9)';this.style.borderColor='rgba(253,185,39,0.2)'">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:20px; height:20px;">
       <path fill-rule="evenodd" d="M9.47 6.47a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 1 1-1.06 1.06L10 8.06l-3.72 3.72a.75.75 0 0 1-1.06-1.06l4.25-4.25Z" clip-rule="evenodd" />
     </svg>
@@ -2022,7 +2028,7 @@
     // Nav scroll style + bouton retour en haut
     window.addEventListener('scroll', () => {
       document.querySelector('nav').style.borderBottomColor =
-        window.scrollY > 40 ? 'rgba(200,160,80,0.15)' : 'var(--border)';
+        window.scrollY > 40 ? 'rgba(253,185,39,0.15)' : 'var(--border)';
 
       const btn = document.getElementById('scrollTop');
       if (window.scrollY > 400) {

@@ -46,15 +46,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --yellow: #C8A050;
-      --magenta: #8B6914;
-      --black: #0A0A0A;
-      --dark: #111111;
-      --card: #191919;
-      --border: #2a2a2a;
+      --yellow: #FDB927;
+      --magenta: #8A4FD8;
+      --black: #0D0718;
+      --dark: #150C24;
+      --card: #1E1333;
+      --border: #33244D;
       --white: #FFFFFF;
       --gray: #888888;
-      --light: #F5E6C8;
+      --light: #FFFFFF;
     }
 
     html {
@@ -88,7 +88,7 @@
       position: fixed;
       top: 28px; left: 0; right: 0;
       z-index: 100;
-      background: rgba(10,10,10,0.92);
+      background: rgba(13,7,24,0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 24px;
@@ -206,7 +206,7 @@
       position: absolute;
       top: -200px; right: -200px;
       width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(200,160,80,0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(253,185,39,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -215,7 +215,7 @@
       position: absolute;
       bottom: -200px; left: -200px;
       width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(139,105,20,0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(138,79,216,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -294,7 +294,7 @@
       transition: all 0.2s;
     }
 
-    .btn-primary:hover { background: #D4AD5A; transform: translateY(-1px); }
+    .btn-primary:hover { background: #FFC94D; transform: translateY(-1px); }
 
     .btn-secondary {
       display: inline-flex;
@@ -311,7 +311,7 @@
       transition: all 0.2s;
     }
 
-    .btn-secondary:hover { border-color: var(--white); }
+    .btn-secondary:hover { border-color: #8A4FD8; background: #552583; }
 
     /* PRESTATIONS */
     #prestations { background: var(--dark); }
@@ -343,14 +343,14 @@
       transition: transform 0.3s;
     }
 
-    .presta-card:hover { border-color: rgba(200,160,80,0.3); transform: translateY(-4px); }
+    .presta-card:hover { border-color: rgba(253,185,39,0.3); transform: translateY(-4px); }
     .presta-card:hover::after { transform: scaleX(1); }
 
     .presta-icon {
       width: 56px;
       height: 56px;
       border-radius: 12px;
-      background: rgba(200,160,80,0.12);
+      background: rgba(253,185,39,0.12);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -415,8 +415,8 @@
       width: 72px;
       height: 72px;
       border-radius: 50%;
-      background: rgba(200,160,80,0.1);
-      border: 2px solid rgba(200,160,80,0.25);
+      background: rgba(253,185,39,0.1);
+      border: 2px solid rgba(253,185,39,0.25);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -472,7 +472,7 @@
       height: 160px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid rgba(200,160,80,0.25);
+      border: 3px solid rgba(253,185,39,0.25);
       flex-shrink: 0;
     }
 
@@ -510,8 +510,8 @@
     }
 
     .genre-badge {
-      background: rgba(200,160,80,0.1);
-      border: 1px solid rgba(200,160,80,0.25);
+      background: rgba(253,185,39,0.1);
+      border: 1px solid rgba(253,185,39,0.25);
       color: var(--yellow);
       font-size: 12px;
       font-weight: 600;
@@ -630,12 +630,12 @@
       margin-top: 8px;
     }
 
-    .btn-submit:hover { background: #D4AD5A; transform: translateY(-1px); }
+    .btn-submit:hover { background: #FFC94D; transform: translateY(-1px); }
 
     .form-success {
       display: none;
-      background: rgba(200,160,80,0.1);
-      border: 1px solid rgba(200,160,80,0.3);
+      background: rgba(253,185,39,0.1);
+      border: 1px solid rgba(253,185,39,0.3);
       border-radius: 8px;
       padding: 20px;
       text-align: center;
@@ -702,7 +702,7 @@
     /* FOOTER */
     footer {
       background: var(--black);
-      border-top: 2px solid #C8A050;
+      border-top: 2px solid #FDB927;
       padding: 48px 24px;
     }
 
@@ -750,7 +750,7 @@
       top: 0; left: 0; right: 0;
       z-index: 101;
       height: 28px;
-      background: #050505;
+      background: #07030E;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -759,7 +759,7 @@
       font-family: 'Inter', sans-serif;
       text-transform: uppercase;
       letter-spacing: 2px;
-      border-bottom: 2px solid #C8A050;
+      border-bottom: 2px solid #FDB927;
     }
 
     .topbar a {
@@ -780,7 +780,7 @@
     /* SCROLLBAR */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: #C8A050; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: #FDB927; border-radius: 3px; }
 
     /* =========== RESPONSIVE =========== */
 
@@ -804,13 +804,13 @@
         flex-direction: column;
         position: fixed;
         top: 92px; left: 0; right: 0;
-        background: rgba(10,10,10,0.98);
+        background: rgba(13,7,24,0.98);
         backdrop-filter: blur(12px);
         padding: 16px 24px 20px;
         gap: 0;
         align-items: stretch;
         z-index: 999;
-        border-bottom: 1px solid rgba(200,160,80,0.1);
+        border-bottom: 1px solid rgba(253,185,39,0.1);
         max-height: calc(100vh - 92px);
         overflow-y: auto;
       }
@@ -968,12 +968,12 @@
         <div style="margin-top:24px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px;">
           <div style="font-size:13px; color:var(--gray); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;">Types d'événements</div>
           <div style="display:flex; flex-wrap:wrap; gap:8px;">
-            <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Festivals</span>
-            <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Corporate</span>
-            <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Soirées privées</span>
-            <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Mariages</span>
-            <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Cérémonies</span>
-            <span style="background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Showcases</span>
+            <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Festivals</span>
+            <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Corporate</span>
+            <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Soirées privées</span>
+            <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Mariages</span>
+            <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Cérémonies</span>
+            <span style="background:rgba(253,185,39,0.08); border:1px solid rgba(253,185,39,0.15); color:var(--yellow); font-size:12px; padding:5px 12px; border-radius:100px;">Showcases</span>
           </div>
         </div>
       </div>
@@ -1107,21 +1107,21 @@
 
           <div style="margin-top:40px; display:flex; flex-direction:column; gap:24px;">
             <div style="display:flex; align-items:flex-start; gap:16px;">
-              <div style="width:44px; height:44px; min-width:44px; border-radius:10px; background:rgba(200,160,80,0.12); display:flex; align-items:center; justify-content:center; font-size:20px;">📧</div>
+              <div style="width:44px; height:44px; min-width:44px; border-radius:10px; background:rgba(253,185,39,0.12); display:flex; align-items:center; justify-content:center; font-size:20px;">📧</div>
               <div>
                 <div style="font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--gray); margin-bottom:4px;">Email booking</div>
                 <div style="font-size:16px; font-weight:500;"><a href="mailto:contactlamug@gmail.com" style="color:var(--yellow); text-decoration:none;">contactlamug@gmail.com</a></div>
               </div>
             </div>
             <div style="display:flex; align-items:flex-start; gap:16px;">
-              <div style="width:44px; height:44px; min-width:44px; border-radius:10px; background:rgba(200,160,80,0.12); display:flex; align-items:center; justify-content:center; font-size:20px;">📞</div>
+              <div style="width:44px; height:44px; min-width:44px; border-radius:10px; background:rgba(253,185,39,0.12); display:flex; align-items:center; justify-content:center; font-size:20px;">📞</div>
               <div>
                 <div style="font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--gray); margin-bottom:4px;">Téléphone</div>
                 <div style="font-size:16px; font-weight:500;"><a href="tel:0651994864" style="color:var(--yellow); text-decoration:none;">06 51 99 48 64</a></div>
               </div>
             </div>
             <div style="display:flex; align-items:flex-start; gap:16px;">
-              <div style="width:44px; height:44px; min-width:44px; border-radius:10px; background:rgba(200,160,80,0.12); display:flex; align-items:center; justify-content:center; font-size:20px;">⏱</div>
+              <div style="width:44px; height:44px; min-width:44px; border-radius:10px; background:rgba(253,185,39,0.12); display:flex; align-items:center; justify-content:center; font-size:20px;">⏱</div>
               <div>
                 <div style="font-size:12px; text-transform:uppercase; letter-spacing:1px; color:var(--gray); margin-bottom:4px;">Délai de réponse</div>
                 <div style="font-size:16px; font-weight:500; color:var(--white);">48 heures maximum</div>
@@ -1375,16 +1375,16 @@
         © 2026 La Maison Urbaine Générale<br>
         <span style="font-size:12px;">20 rue Roger Salengro, 93140 Bondy</span>
         <div style="display:flex; gap:16px; margin-top:12px; justify-content:flex-end;">
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#C8A050'" onmouseout="this.style.color='#888'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" title="YouTube" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#C8A050'" onmouseout="this.style.color='#888'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.46z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#C8A050'" onmouseout="this.style.color='#888'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#FDB927'" onmouseout="this.style.color='#888'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" title="YouTube" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#FDB927'" onmouseout="this.style.color='#888'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.46z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook" style="color:var(--gray); transition:color 0.2s;" onmouseover="this.style.color='#FDB927'" onmouseout="this.style.color='#888'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- Bouton retour en haut -->
-  <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed; bottom:24px; right:24px; z-index:98; width:44px; height:44px; border-radius:50%; border:1px solid rgba(200,160,80,0.2); background:rgba(10,10,10,0.9); backdrop-filter:blur(8px); cursor:pointer; display:none; align-items:center; justify-content:center; transition:all 0.3s; color:#C8A050;" onmouseover="this.style.background='rgba(200,160,80,0.15)';this.style.borderColor='rgba(200,160,80,0.4)'" onmouseout="this.style.background='rgba(10,10,10,0.9)';this.style.borderColor='rgba(200,160,80,0.2)'">
+  <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed; bottom:24px; right:24px; z-index:98; width:44px; height:44px; border-radius:50%; border:1px solid rgba(253,185,39,0.2); background:rgba(13,7,24,0.9); backdrop-filter:blur(8px); cursor:pointer; display:none; align-items:center; justify-content:center; transition:all 0.3s; color:#FDB927;" onmouseover="this.style.background='rgba(253,185,39,0.15)';this.style.borderColor='rgba(253,185,39,0.4)'" onmouseout="this.style.background='rgba(13,7,24,0.9)';this.style.borderColor='rgba(253,185,39,0.2)'">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:20px; height:20px;">
       <path fill-rule="evenodd" d="M9.47 6.47a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 1 1-1.06 1.06L10 8.06l-3.72 3.72a.75.75 0 0 1-1.06-1.06l4.25-4.25Z" clip-rule="evenodd" />
     </svg>
@@ -1404,7 +1404,7 @@
     // Scroll: nav border + bouton retour en haut
     window.addEventListener('scroll', () => {
       document.querySelector('nav').style.borderBottomColor =
-        window.scrollY > 40 ? 'rgba(200,160,80,0.15)' : 'var(--border)';
+        window.scrollY > 40 ? 'rgba(253,185,39,0.15)' : 'var(--border)';
 
       const btn = document.getElementById('scrollTop');
       btn.style.display = window.scrollY > 400 ? 'flex' : 'none';
@@ -1511,7 +1511,7 @@
     // TRANSITIONS DE PAGE
     // ============================================
     const pageOverlay = document.createElement('div');
-    pageOverlay.style.cssText = 'position:fixed;inset:0;background:#0A0A0A;z-index:10000;opacity:0;pointer-events:none;transition:opacity 0.3s;';
+    pageOverlay.style.cssText = 'position:fixed;inset:0;background:#0D0718;z-index:10000;opacity:0;pointer-events:none;transition:opacity 0.3s;';
     document.body.appendChild(pageOverlay);
     document.querySelectorAll('a[href$=".html"]:not([target])').forEach(link => {
       link.addEventListener('click', (e) => {
